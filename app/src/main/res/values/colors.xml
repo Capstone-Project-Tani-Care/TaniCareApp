@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="gray">#808080</color>
-    <color name="gray_light">#F5F5F5</color>
-    <color name="blue">#2196F3</color>
-    <color name="green">#4CAF50</color>
-    <color name="orange">#FF9800</color>
+    <!-- Warna Utama -->
+    <color name="primary">#66A90F</color> <!-- Hijau utama -->
+    <color name="primaryDark">#388E3C</color> <!-- Hijau gelap -->
+    <color name="accent">#D49729</color> <!-- Warna aksen kuning -->
+
+    <!-- Warna Sekunder -->
+    <color name="secondary">#2196F3</color> <!-- Biru -->
+    <color name="secondaryDark">#1976D2</color> <!-- Biru gelap -->
+    <color name="white">#FFFFFF</color> <!-- Putih -->
+    <color name="black">#000000</color> <!-- Hitam -->
+    <color name="gray">#BDBDBD</color> <!-- Abu-abu terang -->
+    <color name="darkGray">#757575</color> <!-- Abu-abu gelap -->
+    <color name="background">#F5F5F5</color> <!-- Latar belakang abu-abu sangat terang -->
+    <color name="linkBlue">#1E88E5</color> <!-- Warna biru untuk teks link -->
+
+    <!-- Warna Tambahan -->
+    <color name="buttonGreen">#4CAF50</color> <!-- Warna hijau untuk tombol -->
+    <color name="errorRed">#D32F2F</color> <!-- Warna merah untuk kesalahan -->
 </resources>
