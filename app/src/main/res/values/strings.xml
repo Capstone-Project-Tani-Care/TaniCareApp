@@ -3,4 +3,11 @@
     <string name="hello_world_brow">Hello World! Brow</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="back">back\n</string>
+    <string name="classification_title">klasifikasi\n</string>
+    <string name="btn_padi">padi\n</string>
+    <string name="btn_kentang">kentang\n</string>
+    <string name="tomat">tomato\n</string>
+    <string name="btn_ketela">ketela pohon</string>
+    <string name="btn_jagung">jagung</string>
 </resources>

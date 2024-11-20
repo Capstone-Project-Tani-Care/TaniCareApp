@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/accent"
             android:text="@string/btn_padi"
             android:textColor="@color/white" />
 
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/accent"
             android:text="@string/btn_jagung"
             android:textColor="@color/white" />
 
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/accent"
             android:text="@string/btn_ketela"
             android:textColor="@color/white" />
 
@@ -76,14 +76,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/orange"
-            android:text="@string/btn_tomat"
+            android:backgroundTint="@color/accent"
+            android:text="@string/tomat"
             android:textColor="@color/white" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/accent"
             android:text="@string/btn_kentang"
             android:textColor="@color/white" />
     </LinearLayout>
