@@ -1,4 +1,32 @@
 <resources>
     <string name="app_name">TaniCare</string>
     <string name="hello_world_brow">Hello World! Brow</string>
+    <string name="app_name">My App</string>
+    <!-- General Strings -->
+    <string name="app_name">Disease Classification</string>
+    <string name="back">Back</string>
+
+    <!-- Classification Screen -->
+    <string name="classification_title">Klasifikasi Penyakit</string>
+    <string name="btn_padi">Padi</string>
+    <string name="btn_jagung">Jagung</string>
+    <string name="btn_ketela">Ketela Pohon</string>
+    <string name="btn_tomat">Tomat</string>
+    <string name="btn_kentang">Kentang</string>
+
+    <!-- Input Classification Screen -->
+    <string name="input_classification_title">Klasifikasi Penyakit</string>
+    <string name="upload_hint">Upload Image</string>
+    <string name="btn_get_disease">Get Penyakit</string>
+
+    <!-- Result Classification Screen -->
+    <string name="result_classification_title">Klasifikasi Penyakit</string>
+    <string name="result_label">Penyakit Kresek</string>
+    <string name="result_description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Fusce bibendum malesuada nibh, euismod hendrerit elit aliquet nec.
+    </string>
+    <string name="padi">Padi</string>
+    <string name="jagung">Jagung</string>
+    <string name="Ketela_Pohon">Ketela Pohon</string>
 </resources>
