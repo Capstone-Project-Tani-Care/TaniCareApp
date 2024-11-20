@@ -10,4 +10,5 @@
     <string name="tomat">tomato\n</string>
     <string name="btn_ketela">ketela pohon</string>
     <string name="btn_jagung">jagung</string>
+    <string name="klasifikasi_penyakit">Klasifikasi Penyakit</string>
 </resources>
