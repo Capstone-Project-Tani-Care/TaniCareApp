@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <!-- Back Button -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,14 +22,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/klasifikasi_penyakit"
+            android:text="@string/Prediksi_Penyakit"
             android:layout_centerInParent="true"
             android:textSize="18sp"
             android:textColor="@color/black"
             android:textStyle="bold" />
     </RelativeLayout>
-
-    <!-- Classification Options -->
 
     <ImageView
         android:layout_width="match_parent"
@@ -50,41 +47,72 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:clipToOutline="true"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/accent"
+            android:background="@drawable/button_background"
             android:text="@string/btn_padi"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="12dp"
+            android:elevation="2dp"
+            tools:targetApi="s" />
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/accent"
+            android:background="@drawable/button_background"
             android:text="@string/btn_jagung"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:clipToOutline="true"
+            android:gravity="center"
+            android:padding="12dp"
+            android:elevation="2dp"
+            tools:targetApi="s" />
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/accent"
+            android:background="@drawable/button_background"
             android:text="@string/btn_ketela"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:clipToOutline="true"
+            android:gravity="center"
+            android:padding="12dp"
+            android:elevation="2dp"
+            tools:targetApi="s" />
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/accent"
+            android:background="@drawable/button_background"
+            android:clipToOutline="true"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:padding="12dp"
             android:text="@string/tomat"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            tools:targetApi="s" />
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/button_background"
             android:text="@string/btn_kentang"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:clipToOutline="true"
+            android:gravity="center"
+            android:padding="12dp"
+            android:elevation="2dp"
+            tools:targetApi="s" />
     </LinearLayout>
 </LinearLayout>

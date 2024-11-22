@@ -11,4 +11,7 @@
     <string name="btn_ketela">ketela pohon</string>
     <string name="btn_jagung">jagung</string>
     <string name="klasifikasi_penyakit">Klasifikasi Penyakit</string>
+    <string name="Prediksi_Penyakit">Prediksi Penyakit</string>
+    <string name="lorem_ipsum">deskripsi\n</string>
+    <string name="penyakit_kresek">nama penyakit\n</string>
 </resources>

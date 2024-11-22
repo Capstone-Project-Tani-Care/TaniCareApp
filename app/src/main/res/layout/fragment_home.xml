@@ -110,17 +110,17 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_disease_prediction"
                     android:contentDescription="Predict Disease"
+                    android:src="@drawable/ic_disease_prediction"
                     app:tint="@color/white" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="Prediksi Penyakit"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:layout_marginTop="8dp" />
+                    android:textSize="14sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

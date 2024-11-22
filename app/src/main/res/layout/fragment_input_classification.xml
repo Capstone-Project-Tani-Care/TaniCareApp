@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prediksi Penyakit"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"
+        android:layout_gravity="center"/>
+
+    <!-- Box untuk tambah gambar -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="262dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/ic_placeholder"
+        android:clipToOutline="true"
+        android:gravity="center"
+        android:outlineProvider="background"
+        tools:targetApi="s">
+
+
+        <ImageView
+            android:id="@+id/iconPlus"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="Tambah Gambar" />
+    </RelativeLayout>
+
+    <!-- Button Cek Penyakit -->
+    <Button
+        android:id="@+id/btnCekPenyakit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/button_background"
+        android:text="Cek Penyakit"
+        android:clipToOutline="true"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"
+        android:elevation="2dp"
+        tools:targetApi="s" />
+
+</LinearLayout>

@@ -1,21 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Warna Utama -->
-    <color name="primary">#66A90F</color> <!-- Hijau utama -->
+    <color name="primary1">#66A90F</color> <!-- Hijau utama -->
     <color name="primaryDark">#388E3C</color> <!-- Hijau gelap -->
     <color name="accent">#D49729</color> <!-- Warna aksen kuning -->
 
     <!-- Warna Sekunder -->
-    <color name="secondary">#2196F3</color> <!-- Biru -->
+    <color name="secondary1">#2196F3</color> <!-- Biru -->
     <color name="secondaryDark">#1976D2</color> <!-- Biru gelap -->
     <color name="white">#FFFFFF</color> <!-- Putih -->
     <color name="black">#000000</color> <!-- Hitam -->
     <color name="gray">#BDBDBD</color> <!-- Abu-abu terang -->
     <color name="darkGray">#757575</color> <!-- Abu-abu gelap -->
-    <color name="background">#F5F5F5</color> <!-- Latar belakang abu-abu sangat terang -->
+    <color name="background1">#F5F5F5</color> <!-- Latar belakang abu-abu sangat terang -->
     <color name="linkBlue">#1E88E5</color> <!-- Warna biru untuk teks link -->
 
     <!-- Warna Tambahan -->
     <color name="buttonGreen">#4CAF50</color> <!-- Warna hijau untuk tombol -->
     <color name="errorRed">#D32F2F</color> <!-- Warna merah untuk kesalahan -->
+
+    <color name="background2">#FEF7FF</color>
+    <color name="error">#B3261E</color>
+    <color name="errorContainer">#F9DEDC</color>
+    <color name="inverseOnSurface">#F5EFF7</color>
+    <color name="inversePrimary">#D0BCFF</color>
+    <color name="inverseSurface">#322F35</color>
+    <color name="onBackground">#1D1B20</color>
+    <color name="onError">#FFFFFF</color>
+    <color name="onErrorContainer">#852221</color>
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="onPrimaryContainer">#4F378A</color>
+    <color name="onPrimaryFixed">#21005D</color>
+    <color name="onPrimaryFixedDim">#D0BCFF</color>
+    <color name="onPrimaryFixedVariant">#4F378B</color>
+    <color name="onSecondary">#FFFFFF</color>
+    <color name="onSecondaryContainer">#4A4459</color>
+    <color name="onSecondaryFixed">#1D192B</color>
+    <color name="onSecondaryFixedVariant">#4A4458</color>
+    <color name="onSurface">#1D1B20</color>
+    <color name="onSurfaceVariant">#49454F</color>
+    <color name="onTertiary">#FFFFFF</color>
+    <color name="onTertiaryContainer">#633B48</color>
+    <color name="onTertiaryFixed">#31111D</color>
+    <color name="onTertiaryFixedVariant">#633B48</color>
+    <color name="outline">#79747E</color>
+    <color name="outlineVariant">#CAC4D0</color>
+    <color name="primary2">#65558F</color>
+    <color name="primaryContainer">#EADDFF</color>
+    <color name="primaryFixed">#EADDFF</color>
+    <color name="secondary2">#625B71</color>
+    <color name="secondaryContainer">#E8DEF8</color>
+    <color name="secondaryFixed">#E8DEF8</color>
+    <color name="secondaryFixedDim">#CCC2DC</color>
+    <color name="shadow">#000000</color>
+    <color name="surface">#FEF7FF</color>
+    <color name="surfaceBright">#FEF7FF</color>
+    <color name="surfaceContainer">#F3EDF7</color>
+    <color name="surfaceContainerHight">#ECE6F0</color>
+    <color name="surfaceContainerHightest">#E6E0E9</color>
+    <color name="surfaceContainerLow">#F7F2FA</color>
+    <color name="surfaceContainerLowest">#FFFFFF</color>
+    <color name="surfaceDim">#DED8E1</color>
+    <color name="surfaceTint">#6750A4</color>
+    <color name="surfaceVariant">#E7E0EC</color>
+    <color name="tertiary">#7D5260</color>
+    <color name="tertiaryContainer">#FFD8E4</color>
+    <color name="tertiaryFixed">#FFD8E4</color>
+    <color name="tertiaryFixedDim">#EFB8C8</color>
 </resources>
