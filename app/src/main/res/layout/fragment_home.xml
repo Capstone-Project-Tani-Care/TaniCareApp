@@ -65,15 +65,14 @@
         </LinearLayout>
 
         <!-- Gambar profil -->
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginRight="16dp"
             android:src="@drawable/ic_profile_placeholder"
             android:contentDescription="Profile Picture"
-            android:background="@drawable/circle_background"
-            android:scaleType="fitCenter" />
+            android:scaleType="centerCrop" />
     </LinearLayout>
 
 
@@ -112,14 +111,14 @@
                     android:layout_height="40dp"
                     android:contentDescription="Predict Disease"
                     android:src="@drawable/ic_disease_prediction"
-                    app:tint="@color/white" />
+                    app:tint="@color/onPrimary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Prediksi Penyakit"
-                    android:textColor="@color/white"
+                    android:textColor="@color/onPrimary"
                     android:textSize="14sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -149,13 +148,13 @@
                     android:layout_height="40dp"
                     android:src="@drawable/ic_weather_prediction"
                     android:contentDescription="Predict Weather"
-                    app:tint="@color/white" />
+                    app:tint="@color/onPrimary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prediksi Cuaca"
-                    android:textColor="@color/white"
+                    android:textColor="@color/onPrimary"
                     android:textSize="14sp"
                     android:layout_marginTop="8dp" />
             </LinearLayout>
@@ -205,7 +204,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:backgroundTint="@color/white"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -222,11 +221,11 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginEnd="8dp"
-                        android:background="@drawable/circle_background"
+                        android:scaleType="centerCrop"
                         android:contentDescription="Profile Picture"
                         android:src="@drawable/ic_profile_placeholder" />
 
@@ -387,11 +386,11 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_gravity="bottom"
         android:background="@drawable/half_squircle"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/onPrimary"
+        app:itemTextColor="@color/onPrimary"
         app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
