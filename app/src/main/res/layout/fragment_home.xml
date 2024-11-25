@@ -33,8 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Welcome Karsiman"
-                android:textStyle="bold"
-                android:textColor="@color/black"
+                style="@style/bold"
                 android:textSize="16sp" />
 
             <!-- Lokasi dengan ikon -->
@@ -43,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:paddingTop="4dp">
+                >
 
                 <ImageView
                     android:id="@+id/location_icon"
@@ -58,6 +57,7 @@
                     android:id="@+id/location_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Rungkut, Surabaya"
                     android:textColor="@color/gray"
                     android:textSize="14sp" />
@@ -77,89 +77,103 @@
 
 
     <!-- Features Section -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/feature_layout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/header_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/header_layout">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_disease_prediction"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="#FA9105"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/card_weather_prediction"
-            app:layout_constraintHorizontalWeight="1"
-            android:foreground="?attr/selectableItemBackground">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Feature"
+            android:textSize="16sp"
+            style="@style/bold"
+            />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:contentDescription="Predict Disease"
-                    android:src="@drawable/ic_disease_prediction"
-                    app:tint="@color/onPrimary" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_disease_prediction"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginEnd="6dp"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="#FA9105"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/card_weather_prediction"
+                app:layout_constraintHorizontalWeight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Prediksi Penyakit"
-                    android:textColor="@color/onPrimary"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_weather_prediction"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="#69A527"
-            app:layout_constraintStart_toEndOf="@id/card_disease_prediction"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontalWeight="1"
-            android:foreground="?attr/selectableItemBackground">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="Predict Disease"
+                        android:src="@drawable/ic_disease_prediction"
+                        app:tint="@color/onPrimary" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Prediksi Penyakit"
+                        android:textColor="@color/onPrimary"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_weather_prediction"
-                    android:contentDescription="Predict Weather"
-                    app:tint="@color/onPrimary" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_weather_prediction"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="6dp"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="#69A527"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontalWeight="1"
+                app:layout_constraintStart_toEndOf="@id/card_disease_prediction"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Prediksi Cuaca"
-                    android:textColor="@color/onPrimary"
-                    android:textSize="14sp"
-                    android:layout_marginTop="8dp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="Predict Weather"
+                        android:src="@drawable/ic_weather_prediction"
+                        app:tint="@color/onPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Prediksi Cuaca"
+                        android:textColor="@color/onPrimary"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
     <!-- Thread Section -->
     <TextView
@@ -167,9 +181,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Thread"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textSize="16sp"
+        style="@style/bold"
         app:layout_constraintTop_toBottomOf="@id/feature_layout"
         app:layout_constraintStart_toStartOf="parent"
         android:padding="16dp" />
@@ -200,8 +213,6 @@
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.cardview.widget.CardView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
@@ -239,9 +250,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Karsiman"
-                            android:textColor="@color/black"
+                            style="@style/bold"
                             android:textSize="14sp"
-                            android:textStyle="bold" />
+                             />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -262,6 +273,8 @@
                     android:textSize="14sp" />
 
                 <!-- Post Image -->
+
+                <!-- Action Buttons (Like, Comment, Share, Save) -->
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
@@ -270,7 +283,6 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_farm" />
 
-                <!-- Action Buttons (Like, Comment, Share, Save) -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

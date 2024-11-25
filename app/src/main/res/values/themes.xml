@@ -15,7 +15,32 @@
         <item name="android:textColorPrimary">@color/black</item>
         <item name="android:textColorSecondary">@color/gray</item>
 
+        <item name="android:fontFamily">@font/poppins</item>
     </style>
 
     <style name="Theme.TaniCare" parent="Base.Theme.TaniCare" />
+
+    <!-- Bold Text Style with black color -->
+    <style name="bold">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!-- Semibold Text Style with black color -->
+    <style name="semibold">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!-- Medium Text Style with black color -->
+    <style name="medium">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!-- Light Text Style with black color -->
+    <style name="light">
+        <item name="android:fontFamily">@font/poppins_light</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
 </resources>
