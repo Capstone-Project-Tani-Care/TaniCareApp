@@ -47,7 +47,6 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- Image Layout -->
             <LinearLayout
                 android:id="@+id/image_container"
                 android:layout_width="match_parent"
@@ -64,7 +63,6 @@
                     android:src="@drawable/sample" />
             </LinearLayout>
 
-            <!-- Disease Name Layout -->
             <LinearLayout
                 android:id="@+id/disease_name_container"
                 android:layout_width="147dp"
@@ -99,8 +97,8 @@
                 <TextView
                     android:id="@+id/tv_disease_description"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
                     android:text="Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Fusce bibendum eleifend\nsemper. Maecenas sit amet lectus\nefficitur, ornare mauris sed, porttitor velit.\nEtiam nec purus justo."
                     android:textColor="@color/shadow"
                     android:textSize="@dimen/fontsize_body_medium" />
