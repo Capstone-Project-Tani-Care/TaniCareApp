@@ -30,6 +30,7 @@
     </RelativeLayout>
 
     <ImageView
+        android:id="@+id/imagePreview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="16dp"
@@ -46,6 +47,7 @@
         android:padding="16dp">
 
         <Button
+            android:id="@+id/btn_padi"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:clipToOutline="true"
@@ -60,6 +62,7 @@
             tools:targetApi="s" />
 
         <Button
+            android:id="@+id/btn_jagung"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="12dp"
@@ -74,6 +77,7 @@
             tools:targetApi="s" />
 
         <Button
+            android:id="@+id/btn_ketela"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="12dp"
@@ -88,6 +92,7 @@
             tools:targetApi="s" />
 
         <Button
+            android:id="@+id/btn_tomat"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="12dp"
@@ -102,6 +107,7 @@
             tools:targetApi="s" />
 
         <Button
+            android:id="@+id/btn_kentang"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="12dp"

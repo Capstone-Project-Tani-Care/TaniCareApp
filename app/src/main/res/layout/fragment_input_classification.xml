@@ -24,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="262dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/ic_placeholder"
         android:clipToOutline="true"
         android:gravity="center"
         android:outlineProvider="background"
@@ -35,6 +34,7 @@
             android:id="@+id/iconPlus"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:src="@drawable/ic_add"
             android:contentDescription="Tambah Gambar" />
     </RelativeLayout>
 

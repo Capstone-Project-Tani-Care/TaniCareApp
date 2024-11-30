@@ -1,4 +1,4 @@
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+ <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
@@ -18,7 +18,14 @@
         android:id="@+id/historyFragment"
         android:name="com.dicoding.tanicare.HistoryFragment"
         android:label="History"
-        tools:layout="@layout/fragment_history"/>
+        tools:layout="@layout/fragment_history">
+        <action
+            android:id="@+id/action_historyFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_historyFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
@@ -29,8 +36,14 @@
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
         <action
-            android:id="@+id/action_profileFragment_to_settings"
+            android:id="@+id/action_profileFragment_to_settingsFragment"
             app:destination="@id/settings" />
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
     </fragment>
 
     <fragment
@@ -79,7 +92,7 @@
         android:label="Input Classification Fragment"
         tools:layout="@layout/fragment_input_classification" >
         <action
-            android:id="@+id/action_inputClassificationFragment_to_ClassificationFragment"
+            android:id="@+id/action_inputClassificationFragment_to_classificationFragment"
             app:destination="@id/ClassificationFragment" />
     </fragment>
 
@@ -111,11 +124,15 @@
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action android:id="@+id/action_homeFragment_to_inputClassificationFragment"        app:destination="@id/inputClassificationFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_weatherFragment"
-            app:destination="@id/WeatherFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_profileFragment"
+        <action android:id="@+id/action_homeFragment_to_weatherFragment" app:destination="@id/WeatherFragment" />
+
+        <action android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+
+        <action android:id="@+id/action_homeFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_historyFragment2"
+            app:destination="@id/historyFragment" />
     </fragment>
 </navigation>
