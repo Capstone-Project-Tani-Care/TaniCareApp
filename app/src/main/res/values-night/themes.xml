@@ -1,7 +1,50 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.TaniCare" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <!-- Base application theme for Dark Mode -->
+    <style name="Base.Theme.TaniCare.Dark" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Warna Utama -->
+        <item name="colorPrimary">@color/primaryDarkMode</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/accentDark</item>
+
+        <!-- Warna Latar -->
+        <item name="android:colorBackground">@color/backgroundDark</item>
+        <item name="colorOnPrimary">@color/darkGray</item>
+        <item name="colorOnSecondary">@color/onSurfaceDark</item>
+
+        <!-- Warna Teks -->
+        <item name="android:textColorPrimary">@color/onBackgroundDark</item>
+        <item name="android:textColorSecondary">@color/onSurfaceDark</item>
+
+        <item name="android:fontFamily">@font/poppins</item>
+
+        <!-- Elevation Overlays -->
+        <item name="colorSurfaceVariant">@color/surfaceVariantDark</item>
+        <item name="colorOutline">@color/outlineDark</item>
+    </style>
+
+    <style name="Theme.TaniCare.Dark" parent="Base.Theme.TaniCare.Dark" />
+
+    <!-- Bold Text Style for Dark Mode -->
+    <style name="bold.dark">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textColor">@color/onBackgroundDark</item>
+    </style>
+
+    <!-- Semibold Text Style for Dark Mode -->
+    <style name="semibold.dark">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textColor">@color/onBackgroundDark</item>
+    </style>
+
+    <!-- Medium Text Style for Dark Mode -->
+    <style name="medium.dark">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">@color/onBackgroundDark</item>
+    </style>
+
+    <!-- Light Text Style for Dark Mode -->
+    <style name="light.dark">
+        <item name="android:fontFamily">@font/poppins_light</item>
+        <item name="android:textColor">@color/onBackgroundDark</item>
     </style>
 </resources>

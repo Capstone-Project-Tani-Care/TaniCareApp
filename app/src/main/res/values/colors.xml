@@ -67,4 +67,16 @@
     <color name="tertiaryContainer">#FFD8E4</color>
     <color name="tertiaryFixed">#FFD8E4</color>
     <color name="tertiaryFixedDim">#EFB8C8</color>
+
+    <!-- DARK MODE -->
+    <color name="backgroundDark">#121212</color> <!-- Latar belakang mode gelap -->
+    <color name="onBackgroundDark">#E0E0E0</color> <!-- Warna teks utama di atas background gelap -->
+    <color name="surfaceDark">#1E1E1E</color> <!-- Warna surface untuk mode gelap -->
+    <color name="onSurfaceDark">#CCCCCC</color> <!-- Warna teks di atas surface gelap -->
+    <color name="primaryDarkMode">#81C784</color> <!-- Warna utama dalam mode gelap -->
+    <color name="onPrimaryDark">#FFFFFF</color> <!-- Teks di atas warna utama dalam mode gelap -->
+    <color name="accentDark">#FFD54F</color> <!-- Warna aksen untuk mode gelap -->
+    <color name="outlineDark">#545454</color> <!-- Warna outline dalam mode gelap -->
+    <color name="surfaceVariantDark">#333333</color> <!-- Warna variant untuk kontainer gelap -->
+
 </resources>

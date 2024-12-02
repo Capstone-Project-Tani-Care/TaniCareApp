@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#F5F5F5">
+    android:background="?android:attr/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,6 +52,7 @@
             android:text="Security"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:paddingStart="16dp"/>
@@ -60,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#FFFFFF"
+            android:background="?attr/colorOnPrimary"
             android:elevation="2dp"
             android:padding="8dp"
             android:layout_marginBottom="16dp"
@@ -79,12 +80,13 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_email"
-                    app:tint="@color/darkGray"/>
+                    app:tint="?android:attr/textColorPrimary"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Change E-Mail"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:layout_marginStart="12dp"
                     android:textSize="14sp"/>
             </LinearLayout>
@@ -107,12 +109,13 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_lock"
-                    app:tint="@color/darkGray"/>
+                    app:tint="?android:attr/textColorPrimary"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Change Password"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:layout_marginStart="12dp"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -125,6 +128,7 @@
             android:text="Settings"
             android:textSize="16sp"
             android:paddingStart="16dp"
+            android:textColor="?android:attr/textColorPrimary"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
@@ -132,7 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#FFFFFF"
+            android:background="?attr/colorOnPrimary"
             android:elevation="2dp"
             android:padding="8dp"
             android:layout_marginBottom="16dp">
@@ -150,12 +154,13 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_dark_mode"
-                    app:tint="@color/darkGray"/>
+                    app:tint="?android:attr/textColorPrimary"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dark Mode"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:layout_marginStart="12dp"
                     android:textSize="14sp" />
 
@@ -184,20 +189,22 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_language"
-                    app:tint="@color/darkGray"/>
+                    app:tint="?android:attr/textColorPrimary"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Language"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:layout_marginStart="12dp"
                     android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
                     android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:text="EN"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -211,13 +218,14 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:paddingStart="16dp"
+            android:textColor="?android:attr/textColorPrimary"
             android:layout_marginBottom="8dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#FFFFFF"
+            android:background="?attr/colorOnPrimary"
             android:elevation="2dp"
             android:padding="8dp"
             android:layout_marginBottom="16dp">
@@ -235,13 +243,14 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_logout"
-                    app:tint="@color/darkGray"/>
+                    app:tint="?android:attr/textColorPrimary"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Log Out"
                     android:layout_marginStart="12dp"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>

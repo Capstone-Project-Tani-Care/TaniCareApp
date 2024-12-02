@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".HomeFragment">
 
     <!-- Header -->
@@ -34,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:text="Welcome Karsiman"
                 style="@style/bold"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp" />
 
             <!-- Lokasi dengan ikon -->
@@ -49,7 +49,7 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:src="@drawable/ic_location"
-                    app:tint="#FA9105"
+                    app:tint="@color/accent"
                     android:contentDescription="Location Icon"
                     android:layout_marginEnd="4dp" />
 
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Rungkut, Surabaya"
-                    android:textColor="@color/gray"
+                    android:textColor="?android:attr/textColorSecondary"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
@@ -123,7 +123,7 @@
                         android:layout_height="40dp"
                         android:contentDescription="Predict Disease"
                         android:src="@drawable/ic_disease_prediction"
-                        app:tint="@color/onPrimary" />
+                        app:tint="?attr/colorOnPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -182,6 +182,7 @@
         android:layout_height="wrap_content"
         android:text="Thread"
         android:textSize="16sp"
+        android:textColor="?android:attr/textColorPrimary"
         style="@style/bold"
         app:layout_constraintTop_toBottomOf="@id/feature_layout"
         app:layout_constraintStart_toStartOf="parent"
@@ -194,7 +195,7 @@
         android:text="See All"
         android:layout_margin="8dp"
         android:textSize="12sp"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         app:layout_constraintTop_toBottomOf="@id/feature_layout"
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="16dp" />
@@ -252,13 +253,14 @@
                             android:text="Karsiman"
                             style="@style/bold"
                             android:textSize="14sp"
+                            android:textColor="?android:attr/textColorPrimary"
                              />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="08:30 am"
-                            android:textColor="@color/gray"
+                            android:textColor="?android:attr/textColorSecondary"
                             android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -269,7 +271,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp"
                     android:text="Hasil Disini Memuaskan Sekali Panennya..."
-                    android:textColor="@color/black"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="14sp" />
 
                 <!-- Post Image -->
@@ -303,14 +305,14 @@
                             android:layout_height="24dp"
                             android:src="@drawable/ic_like_off"
                             android:contentDescription="Like"
-                            app:tint="#444444" />
+                            app:tint="?android:attr/textColorPrimary" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
                             android:text="265"
-                            android:textColor="#444444"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -328,14 +330,14 @@
                             android:layout_height="24dp"
                             android:src="@drawable/ic_comment"
                             android:contentDescription="Comment"
-                            app:tint="#444444" />
+                            app:tint="?android:attr/textColorPrimary" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
                             android:text="21"
-                            android:textColor="#444444"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -353,14 +355,14 @@
                             android:layout_height="24dp"
                             android:src="@drawable/ic_share"
                             android:contentDescription="Share"
-                            app:tint="#444444" />
+                            app:tint="?android:attr/textColorPrimary" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
                             android:text="10"
-                            android:textColor="#444444"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -378,14 +380,14 @@
                             android:layout_height="24dp"
                             android:src="@drawable/ic_save"
                             android:contentDescription="Save"
-                            app:tint="#444444" />
+                            app:tint="?android:attr/textColorPrimary" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
                             android:text="Save"
-                            android:textColor="#444444"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>

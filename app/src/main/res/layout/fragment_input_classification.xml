@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/white">
+    android:background="?android:attr/colorBackground">
 
     <!-- Title -->
     <TextView
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="Prediksi Penyakit"
         android:textSize="20sp"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:textStyle="bold"
         android:layout_marginBottom="24dp"
         android:layout_gravity="center"/>
@@ -35,6 +36,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/ic_add"
+            app:tint="?android:attr/textColorPrimary"
             android:contentDescription="Tambah Gambar" />
     </RelativeLayout>
 
