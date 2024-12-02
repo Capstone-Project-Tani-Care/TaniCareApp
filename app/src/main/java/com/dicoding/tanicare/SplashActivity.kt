@@ -1,20 +1,42 @@
 package com.dicoding.tanicare
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
+import com.dicoding.tanicare.databinding.ActivitySplashBinding
+import com.dicoding.tanicare.credentials.OnboardingFragment
 
 class SplashActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySplashBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_splash)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        runEntryAnimation()
+        binding.logoImageView.postDelayed({
+            loadFragment(OnboardingFragment())
+        }, 5000)
+    }
+
+    private fun runEntryAnimation() {
+        // Animasi fade-in pada logo
+        binding.logoImageView.animate()
+            .alpha(1f)
+            .setDuration(1500)
+            .start()
+
+
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_container, fragment)
+            .commit()
     }
 }

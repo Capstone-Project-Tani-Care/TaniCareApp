@@ -3,11 +3,19 @@
     android:layout_height="match_parent"
     android:background="#213A1E">
 
+    <!-- Logo Splash Screen -->
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="201dp"
         android:layout_height="534dp"
         android:layout_centerInParent="true"
+        android:alpha="0"
         android:src="@drawable/ic_tanicare_logo" />
 
+    <!-- Container untuk Fragment -->
+    <FrameLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 </RelativeLayout>
