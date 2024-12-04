@@ -26,7 +26,7 @@ class OnboardingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        runAnimations()
 
         binding.registerButton.setOnClickListener {
             findNavController().navigate(R.id.action_onboarding_to_loginFragment)

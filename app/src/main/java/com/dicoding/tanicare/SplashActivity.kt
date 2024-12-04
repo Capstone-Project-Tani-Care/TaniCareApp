@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
         runEntryAnimation()
         binding.logoImageView.postDelayed({
             loadFragment(OnboardingFragment())
-        }, 5000)
+        }, 500)
     }
 
     private fun runEntryAnimation() {

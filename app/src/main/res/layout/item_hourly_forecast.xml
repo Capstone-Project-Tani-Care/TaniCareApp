@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="8dp"
+    android:layout_marginEnd="8dp"
+    android:background="#66BB6A"
+    >
+
+    <TextView
+        android:id="@+id/tv_hour_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="28°"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/tv_hour_cloud_coverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="48%"
+        android:textSize="14sp"
+        android:textColor="#FFFFFF" />
+
+    <ImageView
+        android:id="@+id/img_hour_weather"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_rain"
+        android:contentDescription="Rain Icon" />
+</LinearLayout>

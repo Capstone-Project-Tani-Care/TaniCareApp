@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="#66BB6A"
+    >
+
+    <TextView
+        android:id="@+id/tv_day"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Today"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/tv_day_temp_range"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="15° - 29°"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF" />
+
+    <ImageView
+        android:id="@+id/img_day_weather"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_sunny"
+        android:contentDescription="Sunny Icon"
+        android:layout_marginStart="8dp" />
+</LinearLayout>

@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.dicoding.tanicare"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.dicoding.tanicare"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 

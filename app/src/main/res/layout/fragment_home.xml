@@ -38,6 +38,7 @@
 
             <!-- Lokasi dengan ikon -->
             <LinearLayout
+                android:id="@+id/home_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -61,7 +62,17 @@
                     android:text="Rungkut, Surabaya"
                     android:textColor="?android:attr/textColorSecondary"
                     android:textSize="14sp" />
+
+
             </LinearLayout>
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:hint="Search Location"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
         </LinearLayout>
 
         <!-- Gambar profil -->
@@ -107,7 +118,6 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="4dp"
                 app:layout_constraintEnd_toStartOf="@+id/card_weather_prediction"
-                app:layout_constraintHorizontalWeight="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -145,7 +155,6 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontalWeight="1"
                 app:layout_constraintStart_toEndOf="@id/card_disease_prediction"
                 app:layout_constraintTop_toTopOf="parent">
 
