@@ -10,8 +10,8 @@
         android:label="Onboarding"
         tools:layout="@layout/fragment_onboarding">
         <action
-            android:id="@+id/action_onboarding_to_signupFragment"
-            app:destination="@id/signupFragment" />
+            android:id="@+id/action_onboarding_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
