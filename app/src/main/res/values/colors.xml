@@ -56,8 +56,8 @@
     <color name="surface">#FEF7FF</color>
     <color name="surfaceBright">#FEF7FF</color>
     <color name="surfaceContainer">#F3EDF7</color>
-    <color name="surfaceContainerHight">#ECE6F0</color>
-    <color name="surfaceContainerHightest">#E6E0E9</color>
+    <color name="surfaceContainerHigh">#ECE6F0</color>
+    <color name="surfaceContainerHighest">#E6E0E9</color>
     <color name="surfaceContainerLow">#F7F2FA</color>
     <color name="surfaceContainerLowest">#FFFFFF</color>
     <color name="surfaceDim">#DED8E1</color>

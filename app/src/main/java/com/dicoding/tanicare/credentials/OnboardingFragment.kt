@@ -1,7 +1,6 @@
-package com.dicoding.tanicare.credentials
+// OnboardingFragment.kt
+package com.example.app.ui.fragments
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,32 +25,9 @@ class OnboardingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        runAnimations()
 
-        binding.registerButton.setOnClickListener {
+        binding.btnNext.setOnClickListener {
             findNavController().navigate(R.id.action_onboarding_to_loginFragment)
-        }
-    }
-    private fun runAnimations() {
-
-        val titleAnimator = ObjectAnimator.ofFloat(binding.titleText, View.ALPHA, 0f, 1f).apply {
-            duration = 1500
-        }
-
-
-        val subtitleAnimator = ObjectAnimator.ofFloat(binding.subtitleText, View.TRANSLATION_Y, 100f, 0f).apply {
-            duration = 1500
-        }
-
-
-        val buttonAnimator = ObjectAnimator.ofFloat(binding.registerButton, View.ALPHA, 0f, 1f).apply {
-            duration = 1500
-        }
-
-
-        AnimatorSet().apply {
-            playTogether(titleAnimator, subtitleAnimator, buttonAnimator)
-            start()
         }
     }
 

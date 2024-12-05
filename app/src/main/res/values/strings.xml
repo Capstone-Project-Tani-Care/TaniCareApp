@@ -2,17 +2,18 @@
     <string name="app_name">TaniCare</string>
     <string name="hello_world_brow">Hello World! Brow</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="back">back\n</string>
-    <string name="classification_title">klasifikasi\n</string>
-    <string name="btn_padi">padi\n</string>
-    <string name="btn_kentang">kentang\n</string>
-    <string name="tomat">tomato\n</string>
+    <string name="back">back\\n</string>
+    <string name="classification_title">klasifikasi\\n</string>
+    <string name="btn_padi">padi\\n</string>
+    <string name="btn_kentang">kentang\\n</string>
+    <string name="tomat">tomato</string>
     <string name="btn_ketela">ketela pohon</string>
     <string name="btn_jagung">jagung</string>
     <string name="klasifikasi_penyakit">Klasifikasi Penyakit</string>
-    <string name="Prediksi_Penyakit">Prediksi Penyakit</string>
-    <string name="lorem_ipsum">deskripsi\n</string>
-    <string name="penyakit_kresek">nama penyakit\n</string>
+    <string name="prediksi_penyakit">Prediksi Penyakit</string>
+    <string name="lorem_ipsum">deskripsi\\n</string>
+    <string name="penyakit_kresek">nama penyakit\\n</string>
     <string name="petani">Petani</string>
-    <string name="Welcome_Word">Welcome To TaniCare</string>
+    <string name="welcome_word">Welcome To TaniCare</string>
+    <string name="next">Next</string>
 </resources>

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/onboarding"
-        android:name="com.dicoding.tanicare.credentials.OnboardingFragment"
+        android:name="com.example.app.ui.fragments.OnboardingFragment"
         android:label="Onboarding"
         tools:layout="@layout/fragment_onboarding">
         <action
