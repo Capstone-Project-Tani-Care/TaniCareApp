@@ -44,7 +44,7 @@
                     android:layout_width="123dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/Prediksi_Penyakit"
+                    android:text="@string/prediksi_penyakit"
                     android:textColor="?android:attr/textColorPrimary"
                     android:textSize="@dimen/fontsize_body_large"
                     android:textStyle="bold" />
