@@ -1,5 +1,5 @@
 // OnboardingFragment.kt
-package com.example.app.ui.fragments
+package com.dicoding.tanicare.credentials
 
 import android.os.Bundle
 import android.view.LayoutInflater
