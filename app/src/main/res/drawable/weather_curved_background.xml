@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Warna Background -->
+    <solid android:color="#5D8E2C" />
+
+    <!-- Radius Sudut (Curved Squircle) -->
+    <corners android:radius="16dp" />
+
+    <!-- Tambahkan Bayangan jika Diperlukan -->
+    <padding android:left="4dp"
+        android:top="4dp"
+        android:right="4dp"
+        android:bottom="4dp" />
+</shape>

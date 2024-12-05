@@ -4,8 +4,11 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="8dp"
+    android:layout_margin="8dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
     android:layout_marginBottom="8dp"
-    android:background="#66BB6A"
+    android:background="@drawable/weather_curved_background"
     >
 
     <TextView
@@ -14,6 +17,14 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Today"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF" />
+    <TextView
+        android:id="@+id/tv_tcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50%"
+        android:paddingEnd="10dp"
         android:textSize="16sp"
         android:textColor="#FFFFFF" />
 
@@ -27,8 +38,8 @@
 
     <ImageView
         android:id="@+id/img_day_weather"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:src="@drawable/ic_sunny"
         android:contentDescription="Sunny Icon"
         android:layout_marginStart="8dp" />

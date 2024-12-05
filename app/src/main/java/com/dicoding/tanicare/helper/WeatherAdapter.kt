@@ -1,75 +1,129 @@
 package com.dicoding.tanicare.helper
 
+import android.icu.text.SimpleDateFormat
+import android.icu.util.Calendar
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.tanicare.R
 import com.dicoding.tanicare.databinding.ItemHourlyForecastBinding
 import com.dicoding.tanicare.databinding.ItemThreeDayForecastBinding
-import com.dicoding.tanicare.helper.weather.WeatherData
+import com.dicoding.tanicare.helper.weather.Cuaca
+import java.util.Date
+import java.util.Locale
 
-data class HourlyForecast(
-    val temperature: Int,
-    val precipitation: Int,
-    val iconResId: Int
-)
+class HourlyForecastAdapter(private var items: List<Cuaca>) :
+    RecyclerView.Adapter<HourlyForecastAdapter.ViewHolder>() {
 
-data class ThreeDayForecast(
-    val day: String,
-    val tempRange: String,
-    val iconResId: Int
-)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvHourTemp: TextView = itemView.findViewById(R.id.tv_hour_temp)
+        val tvHourCloudCoverage: TextView = itemView.findViewById(R.id.tv_hour_cloud_coverage)
+        val imgHourWeather: ImageView = itemView.findViewById(R.id.img_hour_weather)
+        val tvHour: TextView = itemView.findViewById(R.id.tv_hour)
+    }
 
-class HourlyForecastAdapter(private val data: List<WeatherData>) :
-    RecyclerView.Adapter<HourlyForecastAdapter.HourlyViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_hourly_forecast, parent, false)
+        return ViewHolder(view)
+    }
 
-    inner class HourlyViewHolder(private val binding: ItemHourlyForecastBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: WeatherData) {
-            binding.tvHourTemp.text = "${item.t}°C"
-            binding.tvHourCloudCoverage.text = "${item.tcc}%"
-            Glide.with(binding.root.context)
-                .load(item.image)
-                .into(binding.imgHourWeather)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = items[position]
+        holder.tvHourTemp.text = "${item.t}°"
+        holder.tvHourCloudCoverage.text = "${item.tcc}%"
+
+        // Load weather icon
+        Glide.with(holder.itemView.context)
+            .load(item.image)
+            .into(holder.imgHourWeather)
+
+        // Format and display the hour
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("h a", Locale.getDefault()) // "h a" -> 7 PM
+        try {
+            val date = inputFormat.parse(item.datetime)
+            holder.tvHour.text = outputFormat.format(date)
+        } catch (e: Exception) {
+            holder.tvHour.text = "-" // Fallback in case of error
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HourlyViewHolder {
-        val binding = ItemHourlyForecastBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return HourlyViewHolder(binding)
-    }
+    override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: HourlyViewHolder, position: Int) {
-        holder.bind(data[position])
+    fun updateItems(newItems: List<Cuaca>) {
+        items = newItems
+        notifyDataSetChanged()
     }
-
-    override fun getItemCount(): Int = data.size
 }
 
-class ThreeDayForecastAdapter(private val data: List<WeatherData>) :
-    RecyclerView.Adapter<ThreeDayForecastAdapter.ThreeDayViewHolder>() {
+class ThreeDayForecastAdapter(private var items: List<List<Cuaca>>) :
+    RecyclerView.Adapter<ThreeDayForecastAdapter.ViewHolder>() {
 
-    inner class ThreeDayViewHolder(private val binding: ItemThreeDayForecastBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: WeatherData) {
-            binding.tvDay.text = item.local_datetime.substring(0, 10) // Ambil tanggal
-            binding.tvDayTempRange.text = "${item.t}°C"
-            Glide.with(binding.root.context)
-                .load(item.image)
-                .into(binding.imgDayWeather)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvDay: TextView = itemView.findViewById(R.id.tv_day)
+        val tvDayTempRange: TextView = itemView.findViewById(R.id.tv_day_temp_range)
+        val imgDayWeather: ImageView = itemView.findViewById(R.id.img_day_weather)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_three_day_forecast, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val dayForecast = items[position]
+
+        // Extract first Cuaca object for the day's forecast
+        val firstItem = dayForecast.firstOrNull() ?: return
+
+        // Determine day name: "Today", "Tomorrow", or weekday
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        try {
+            val date = inputFormat.parse(firstItem.datetime)
+            holder.tvDay.text = getDayLabel(date)
+        } catch (e: Exception) {
+            holder.tvDay.text = "-" // Fallback in case of error
+        }
+
+        // Calculate temperature range
+        val minTemp = dayForecast.minOfOrNull { it.t } ?: 0
+        val maxTemp = dayForecast.maxOfOrNull { it.t } ?: 0
+        holder.tvDayTempRange.text = "$minTemp° - $maxTemp°"
+
+        // Load weather icon
+        Glide.with(holder.itemView.context)
+            .load(firstItem.image)
+            .into(holder.imgDayWeather)
+    }
+
+    override fun getItemCount(): Int = items.size
+
+    fun updateItems(newItems: List<List<Cuaca>>) {
+        items = newItems
+        notifyDataSetChanged()
+    }
+
+    private fun getDayLabel(date: Date?): String {
+        if (date == null) return "-"
+        val calendar = Calendar.getInstance()
+        val today = Calendar.getInstance()
+
+        // Compare the date with today
+        calendar.time = date
+        return when {
+            calendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+                    calendar.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR) -> "Today"
+
+            calendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+                    calendar.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR) + 1 -> SimpleDateFormat("EEEE", Locale.getDefault()).format(date)
+
+            else -> SimpleDateFormat("EEEE", Locale.getDefault()).format(date) // "Monday", "Tuesday", etc.
         }
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThreeDayViewHolder {
-        val binding = ItemThreeDayForecastBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ThreeDayViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: ThreeDayViewHolder, position: Int) {
-        holder.bind(data[position])
-    }
-
-    override fun getItemCount(): Int = data.size
 }

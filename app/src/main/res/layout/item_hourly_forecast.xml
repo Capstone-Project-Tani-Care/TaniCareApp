@@ -5,8 +5,8 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="8dp"
-    android:layout_marginEnd="8dp"
-    android:background="#66BB6A"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/weather_curved_background_darker"
     >
 
     <TextView
@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:text="28°"
         android:textSize="16sp"
+        android:textStyle="bold"
         android:textColor="#FFFFFF" />
 
     <TextView
@@ -22,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="48%"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:textColor="#FFFFFF" />
 
     <ImageView
@@ -31,4 +32,11 @@
         android:layout_height="32dp"
         android:src="@drawable/ic_rain"
         android:contentDescription="Rain Icon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_hour"
+        android:textColor="#FFFFFF"
+        android:text="7 AM"/>
 </LinearLayout>

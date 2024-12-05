@@ -1,15 +1,30 @@
 package com.dicoding.tanicare.helper.weather
 
-data class WeatherResponse(
-    val forecast: List<WeatherData>
+data class ApiResponse(
+    val lokasi: Lokasi,
+    val data: List<WeatherData>
+)
+
+data class Lokasi(
+    val provinsi: String,
+    val kotkab: String,
+    val kecamatan: String,
+    val desa: String
 )
 
 data class WeatherData(
-    val datetime: String,         // UTC waktu
-    val t: Int,                   // Suhu
-    val hu: Int,               // Hujan
-    val tcc: Int,               // Tutupan awan dalam persentase
-    val weather_desc: String,     // Deskripsi cuaca
-    val local_datetime: String,   // Waktu lokal
-    val image: String             // URL gambar ikon cuaca
+    val lokasi: Lokasi,
+    val cuaca: List<List<Cuaca>>
 )
+
+data class Cuaca(
+    val datetime: String,
+    val t: Int,
+    val tcc: Int,
+    val tp: Double,
+    val weather_desc: String,
+    val hu: Int,
+    val image: String,
+    val local_datetime: String
+)
+
