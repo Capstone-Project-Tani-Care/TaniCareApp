@@ -16,4 +16,14 @@
     <string name="petani">Petani</string>
     <string name="welcome_word">Welcome To TaniCare</string>
     <string name="next">Next</string>
+    <string name="about_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum eleifend semper.</string>
+    <string name="about">About</string>
+    <string name="gender">Male</string>
+    <string name="location">Location</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="username">Username</string>
+    <string name="Name">Karsiman</string>
+    <string name="gender_text">Gender</string>
+    <string name="location_text">Rungkut, Surabaya</string>
+    <string name="save_thread">Save Thread</string>
 </resources>

@@ -40,7 +40,8 @@
         android:clipToOutline="true"
         android:contentDescription="@string/classification_title"
         android:scaleType="centerCrop"
-        android:src="@drawable/sample" />
+        android:src="@drawable/sample"
+        tools:targetApi="s" />
 
     <LinearLayout
         android:layout_width="match_parent"
