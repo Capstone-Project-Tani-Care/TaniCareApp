@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".SplashActivity"
+    android:id="@+id/main"
     android:background="#213A1E">
 
     <!-- Logo Splash Screen -->
