@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/onboardingFragment">
+     <action
+         android:id="@+id/action_global_homeFragment"
+         app:destination="@id/homeFragment" />
+     <action
+         android:id="@+id/action_global_loginFragment"
+         app:destination="@id/loginFragment" />
 
     <fragment
         android:id="@+id/onboardingFragment"
@@ -134,5 +140,16 @@
         <action
             android:id="@+id/action_homeFragment_to_historyFragment2"
             app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_threadFragment"
+            app:destination="@+id/threadFragment"/>
     </fragment>
+
+     <fragment
+         android:id="@+id/threadFragment"
+         android:name="com.dicoding.tanicare.MainThreadFragment"
+         android:label="ThreadFragment"
+         tools:layout="@layout/fragment_main_thread">
+
+     </fragment>
 </navigation>

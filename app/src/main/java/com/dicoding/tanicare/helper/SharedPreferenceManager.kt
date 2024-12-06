@@ -11,6 +11,7 @@ class SharedPreferencesManager(context: Context) {
     companion object {
         private const val PREF_NAME = "AppPreferences"
         private const val DARK_MODE_KEY = "dark_mode"
+        private const val USER_ID = "user_id"
         private const val AUTH_TOKEN_KEY = "auth_token" // Key untuk token
         private const val ZONE_CODE = "zone_code" // kode wilayah
     }
@@ -34,6 +35,12 @@ class SharedPreferencesManager(context: Context) {
         editor.apply()
     }
 
+    fun saveUserId(token: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(USER_ID, token)
+        editor.apply()
+    }
+
     fun saveZoneCode(zone: String) {
         val editor = sharedPreferences.edit()
         editor.putString(ZONE_CODE, zone)
@@ -42,7 +49,11 @@ class SharedPreferencesManager(context: Context) {
 
     // Fungsi untuk mengambil token login (auth token)
     fun getAuthToken(): String? {
-        return sharedPreferences.getString(AUTH_TOKEN_KEY, null) // Mengembalikan null jika token tidak ada
+        return sharedPreferences.getString(AUTH_TOKEN_KEY, null)
+    }
+
+    fun getUserId(): String? {
+        return sharedPreferences.getString(USER_ID, null)
     }
 
     fun getZoneCode(): String {
@@ -53,6 +64,12 @@ class SharedPreferencesManager(context: Context) {
     fun clearAuthToken() {
         val editor = sharedPreferences.edit()
         editor.remove(AUTH_TOKEN_KEY)
+        editor.apply()
+    }
+
+    fun clearUserId() {
+        val editor = sharedPreferences.edit()
+        editor.remove(USER_ID)
         editor.apply()
     }
 }

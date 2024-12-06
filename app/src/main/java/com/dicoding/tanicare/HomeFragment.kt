@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,19 +14,24 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dicoding.tanicare.databinding.FragmentHomeBinding
 import android.widget.ArrayAdapter
-import androidx.appcompat.widget.SearchView
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import com.dicoding.tanicare.helper.ApiClient
+import com.dicoding.tanicare.helper.ApiService
 import com.dicoding.tanicare.helper.SharedPreferencesManager
-import loadZonesFromCsv
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var sharedPreferencesManager: SharedPreferencesManager
+    private lateinit var apiService: ApiService
 
-    private lateinit var zones: List<Zone>  // Daftar zona yang dibaca dari CSV
+    // Adapter untuk AutoCompleteTextView
+    private lateinit var adapter: ArrayAdapter<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,19 +39,20 @@ class HomeFragment : Fragment() {
     ): View {
         sharedPreferencesManager = SharedPreferencesManager(requireContext())
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        // Inisialisasi ApiService dengan menggunakan ApiClient
+        val retrofit = ApiClient.getClient() // Memanggil ApiClient untuk mendapatkan Retrofit instance
+        apiService = retrofit.create(ApiService::class.java) // Mendapatkan ApiService instance
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Membaca data zona dari CSV
-        zones = loadZonesFromCsv(requireContext())
+        setupSearchView()
 
-        // Setup AutoCompleteTextView sebagai pengganti SearchView
-
-
-        // Navigasi lainnya tetap sama
+        // Navigasi dan interaksi UI lainnya
         binding.cardDiseasePrediction.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_inputClassificationFragment)
         }
@@ -56,6 +63,10 @@ class HomeFragment : Fragment() {
 
         binding.profileImage.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+        }
+
+        binding.threadSeeAll.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_threadFragment)
         }
 
         binding.bottomNav.setOnNavigationItemSelectedListener { item ->
@@ -72,34 +83,21 @@ class HomeFragment : Fragment() {
             }
         }
 
-        // Menampilkan SearchView saat home_location diklik
         binding.homeLocation.setOnClickListener {
-            setupSearchView()
-            binding.searchView.visibility = View.VISIBLE  // Menampilkan AutoCompleteTextView
-            binding.searchView.requestFocus()  // Fokus pada AutoCompleteTextView
+            binding.searchView.visibility = View.VISIBLE
+            binding.searchView.requestFocus()
         }
 
-        // Mengubah teks lokasi dengan nama kota yang sesuai dengan zona yang disimpan di SharedPreferences
+        // Memperbarui teks lokasi dari SharedPreferences
         updateLocationText()
     }
 
     private fun setupSearchView() {
-        // Memanggil fungsi untuk memuat data zona dari file CSV
-        val zones = loadZonesFromCsv(requireContext())  // Pastikan zones dimuat sebelum digunakan
+        // Inisialisasi adapter kosong
+        adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, mutableListOf())
 
-        // Membuat adapter untuk AutoCompleteTextView
-        val cities = zones.map { it.cityName }
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, cities)
-
-        // Ganti SearchView dengan AutoCompleteTextView di layout
         val autoCompleteTextView = binding.searchView as AutoCompleteTextView
         autoCompleteTextView.setAdapter(adapter)
-
-        // Menampilkan AutoCompleteTextView ketika home_location diklik
-        binding.homeLocation.setOnClickListener {
-            autoCompleteTextView.visibility = View.VISIBLE  // Menampilkan AutoCompleteTextView
-            autoCompleteTextView.requestFocus()  // Fokus pada AutoCompleteTextView
-        }
 
         // Menangani saran nama kota ketika diketik
         autoCompleteTextView.addTextChangedListener(object : TextWatcher {
@@ -113,41 +111,97 @@ class HomeFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val query = s.toString()
-                // Menyaring kota yang sesuai dengan input pengguna
-                val filteredCities = cities.filter { it.contains(query, ignoreCase = true) }
-                adapter.clear()
-                adapter.addAll(filteredCities)
-                adapter.notifyDataSetChanged()
+                if (query.length >= 1) {
+                    // Panggil API untuk mendapatkan suggestion berdasarkan query
+                    getRegionSuggestions(query)
+                } else {
+                    // Clear hasil ketika input kosong
+                    adapter.clear()
+                    adapter.notifyDataSetChanged()
+                }
             }
         })
 
         // Ketika pengguna memilih lokasi dari saran
-        autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
+        autoCompleteTextView.setOnItemClickListener { parent, _, position, _ ->
             val selectedCity = parent.getItemAtPosition(position).toString()
-            val selectedZone = zones.find { it.cityName.equals(selectedCity, ignoreCase = true) }
-            selectedZone?.let { zone ->
-                // Simpan kode zona ke SharedPreferences
-                sharedPreferencesManager.saveZoneCode(zone.code)
-                Toast.makeText(requireContext(), "Zona disimpan: ${zone.cityName}", Toast.LENGTH_SHORT).show()
-            }
-            // Menyembunyikan AutoCompleteTextView setelah memilih
+            // Simulasi: Simpan kode zona sesuai dengan kota yang dipilih
+            getZoneCode(selectedCity) // Gantilah dengan logika yang sesuai
+            Toast.makeText(requireContext(), "Zona disimpan: $selectedCity", Toast.LENGTH_SHORT).show()
             autoCompleteTextView.visibility = View.GONE
         }
     }
 
-    // Fungsi untuk memperbarui teks lokasi berdasarkan data zona yang disimpan di SharedPreferences
+    // Fungsi untuk mendapatkan suggestion nama kota dari API
+    private fun getRegionSuggestions(query: String) {
+        apiService.getRegionName(query).enqueue(object : Callback<Map<String, Any>> {
+            override fun onResponse(call: Call<Map<String, Any>>, response: Response<Map<String, Any>>) {
+                if (response.isSuccessful) {
+                    val data = response.body()?.get("data") as? List<Map<String, Any>>
+                    val cityNames = data?.map { it["name"] as? String ?: "" } ?: emptyList()
+
+                    // Update adapter dengan data yang diterima
+                    adapter.clear()
+                    adapter.addAll(cityNames)
+                    adapter.notifyDataSetChanged()
+                } else {
+                    Log.e("API Error", "Response not successful")
+                }
+            }
+
+            override fun onFailure(call: Call<Map<String, Any>>, t: Throwable) {
+                Log.e("API Failure", t.message ?: "Unknown error")
+            }
+        })
+    }
+
+    private fun getZoneCode(query: String) {
+        sharedPreferencesManager = SharedPreferencesManager(requireContext())
+        val apiService = ApiClient.getClient().create(ApiService::class.java)
+
+        // Panggil getRegionCode dengan parameter query
+        apiService.getRegionCode(query).enqueue(object : Callback<Map<String, Any>> {
+            override fun onResponse(call: Call<Map<String, Any>>, response: Response<Map<String, Any>>) {
+                if (response.isSuccessful) {
+                    val zoneResponse = response.body()
+                    if (zoneResponse != null) {
+                        // Ambil data dari response yang sesuai dengan format yang diterima
+                        val dataList = zoneResponse["data"] as? List<Map<String, Any>>
+                        if (dataList != null && dataList.isNotEmpty()) {
+                            // Ambil kode_wilayah dari data pertama dalam list
+                            val zoneCode = dataList[0]["kode_wilayah"] as? String
+                            if (zoneCode != null) {
+                                // Simpan kode_wilayah ke sharedPreferences
+                                sharedPreferencesManager.saveZoneCode(zoneCode)
+                            } else {
+                                Toast.makeText(requireContext(), "Kode wilayah tidak ditemukan", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            Toast.makeText(requireContext(), "Data tidak ditemukan atau kosong", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(requireContext(), "Fetch failed: Response body is null", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "Fetch failed: ${response.message()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Map<String, Any>>, t: Throwable) {
+                Toast.makeText(requireContext(), "Fetch failed: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
     private fun updateLocationText() {
         // Mengambil kode zona yang disimpan di SharedPreferences
         val savedZoneCode = sharedPreferencesManager.getZoneCode()
 
-        // Mencocokkan kode zona yang disimpan dengan daftar zona
-        val zone = zones.find { it.code == savedZoneCode }
-
-        // Jika ditemukan, ubah teks lokasi dengan nama kota yang sesuai
-        zone?.let {
-            binding.locationText.text = it.cityName  // Ganti location_text dengan nama kota
-        } ?: run {
-            binding.locationText.text = "Lokasi tidak tersedia"  // Jika tidak ditemukan, beri pesan default
+        // Mencocokkan kode zona yang disimpan dengan zona yang sesuai (dapat diganti dengan API juga)
+        if (savedZoneCode.isNotEmpty()) {
+            binding.locationText.text = savedZoneCode  // Gantilah dengan nama kota sesuai kode zona
+        } else {
+            binding.locationText.text = "Lokasi tidak tersedia"
         }
     }
 
@@ -156,3 +210,4 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 }
+

@@ -23,26 +23,23 @@ class SettingsFragment : Fragment() {
 
         sharedPreferencesManager = SharedPreferencesManager(requireContext())
 
+        // Load current dark mode state
         val isDarkMode = sharedPreferencesManager.isDarkModeEnabled()
-        applyDarkMode(isDarkMode)
-
         binding.darkModeSwitch.isChecked = isDarkMode
 
+        // Listen for dark mode toggle
         binding.darkModeSwitch.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferencesManager.setDarkModeEnabled(isChecked)
+            requireActivity().recreate() // Restart activity to apply theme
+        }
 
-            applyDarkMode(isChecked)
+        binding.logoutLayout.setOnClickListener{
+            sharedPreferencesManager.clearUserId()
+            sharedPreferencesManager.clearAuthToken()
             requireActivity().recreate()
         }
 
         return binding.root
     }
-
-    private fun applyDarkMode(isDarkMode: Boolean) {
-        if (isDarkMode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
-    }
 }
+

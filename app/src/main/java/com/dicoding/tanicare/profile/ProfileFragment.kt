@@ -3,6 +3,7 @@ package com.dicoding.tanicare.profile
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -28,6 +29,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         adapter = MyPhotoAdapter(emptyList()) // Adapter kosong awal
         binding.photoRecyclerView.adapter = adapter
 
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                    findNavController().navigateUp()
+            }
+        })
         // Navigasi tombol back
         binding.iconBack.setOnClickListener {
             findNavController().navigateUp()
@@ -43,26 +49,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
         }
 
-        // Panggil API untuk mendapatkan data foto
-        fetchPhotos()
-    }
 
-    private fun fetchPhotos() {
-        val apiService = ApiClient.getClient().create(ApiService::class.java)
-        apiService.getPhotos().enqueue(object : Callback<List<String>> {
-            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
-                if (response.isSuccessful) {
-                    val photos = response.body() ?: emptyList()
-                    adapter = MyPhotoAdapter(photos) // Update adapter dengan data API
-                    binding.photoRecyclerView.adapter = adapter
-                } else {
-                    Toast.makeText(context, "Gagal memuat data", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<List<String>>, t: Throwable) {
-                Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
     }
 }
