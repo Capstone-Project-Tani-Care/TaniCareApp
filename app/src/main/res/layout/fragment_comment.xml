@@ -1,0 +1,141 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Header (Profile Picture + User Info) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Profile Picture"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_profile_placeholder" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Karsiman"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="08:30 am"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Post Text -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="Hasil Disini Memuaskan Sekali Panennya..."
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="14sp" />
+
+            <!-- Post Image -->
+
+            <!-- Action Buttons (Like, Comment, Share, Save) -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginVertical="8dp"
+                android:contentDescription="Post Image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_farm" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <!-- Bagian Komentar -->
+
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/comment_section"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <!-- Input komentar -->
+
+        <!-- RecyclerView untuk daftar komentar -->
+
+        <EditText
+            android:id="@+id/edit_comment"
+            android:layout_width="392dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_edittext"
+            android:drawableStart="@drawable/ic_comment"
+            android:drawablePadding="8dp"
+            android:hint="@string/comment_text"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_comment"
+            android:layout_width="394dp"
+            android:layout_height="230dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_comment" />
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@drawable/half_squircle"
+        app:itemIconTint="@color/onPrimary"
+        app:itemTextColor="@color/onPrimary"
+        app:menu="@menu/bottom_nav_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

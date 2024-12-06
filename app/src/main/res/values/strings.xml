@@ -26,4 +26,5 @@
     <string name="gender_text">Gender</string>
     <string name="location_text">Rungkut, Surabaya</string>
     <string name="save_thread">Save Thread</string>
+    <string name="comment_text">Type Your Comment Here</string>
 </resources>
