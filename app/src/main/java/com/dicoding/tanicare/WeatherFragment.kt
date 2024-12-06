@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.dicoding.tanicare.databinding.FragmentWeatherBinding
@@ -27,6 +29,14 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentWeatherBinding.bind(view)
         sharedPreferencesManager = SharedPreferencesManager(requireContext())
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (findNavController().currentDestination?.id == R.id.WeatherFragment) {
+                    findNavController().navigateUp()
+                }
+            }
+        })
 
         // Initialize adapters
         val hourlyAdapter = HourlyForecastAdapter(emptyList())

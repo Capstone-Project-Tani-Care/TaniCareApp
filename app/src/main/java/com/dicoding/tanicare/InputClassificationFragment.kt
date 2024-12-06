@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dicoding.tanicare.databinding.FragmentInputClassificationBinding
@@ -25,6 +26,13 @@ class InputClassificationFragment : Fragment(R.layout.fragment_input_classificat
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentInputClassificationBinding.bind(view)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (findNavController().currentDestination?.id == R.id.inputClassificationFragment) {
+                    findNavController().navigateUp()
+                }
+            }
+        })
 
         // Aksi untuk memilih gambar
         binding.iconPlus.setOnClickListener {

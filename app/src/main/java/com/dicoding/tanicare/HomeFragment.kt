@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
         zones = loadZonesFromCsv(requireContext())
 
         // Setup AutoCompleteTextView sebagai pengganti SearchView
-        setupSearchView()
+
 
         // Navigasi lainnya tetap sama
         binding.cardDiseasePrediction.setOnClickListener {
@@ -74,6 +74,7 @@ class HomeFragment : Fragment() {
 
         // Menampilkan SearchView saat home_location diklik
         binding.homeLocation.setOnClickListener {
+            setupSearchView()
             binding.searchView.visibility = View.VISIBLE  // Menampilkan AutoCompleteTextView
             binding.searchView.requestFocus()  // Fokus pada AutoCompleteTextView
         }

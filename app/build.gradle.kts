@@ -51,7 +51,6 @@ dependencies {
     implementation (libs.navigation.fragment.ktx)
     implementation (libs.navigation.ui.ktx)
     implementation (libs.circleimageview)
-    implementation(libs.androidx.navigation.fragment)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -61,7 +60,6 @@ dependencies {
     implementation (libs.kotlinx.coroutines.core)
     implementation (libs.kotlinx.coroutines.android)
     implementation (libs.glide)
-    implementation (libs.androidx.navigation.fragment.ktx.v253)
-    implementation (libs.androidx.navigation.ui.ktx.v253)
+
 
 }
