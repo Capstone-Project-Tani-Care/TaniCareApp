@@ -71,4 +71,24 @@ interface ApiService {
 
     @GET("region_code")
     fun getRegionCode(@Query("query") query: String): Call<Map<String, Any>>
+
+    @GET("profile")
+    fun getUserInfo(@Query("userId") userId: String): Call<Map<String, Any>>
+
+    @GET("profile")
+    fun getProfile(@Query("userId") userId: String): Call<ProfileResponse>
+
+    /*@GET("threads")
+    fun getThreadDetail(@Query("thread_id") threadId: String): Call<ThreadResponse>*/
+
+    @GET("threads")
+    fun getThreadDetailWithAuth(
+        @Header("Authorization") token: String?,
+        @Query("thread_id") thread_id: String
+    ): Call<ThreadResponse>
+    /*@GET("threads")
+    fun getThread(
+        @Header("Authorization") authToken: String,  // Bearer Token
+        @Query("thread_id") threadId: String         // ID thread
+    ): Call<ApiResponse>*/
 }

@@ -1,7 +1,5 @@
 package com.dicoding.tanicare
 
-
-import Zone
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -10,12 +8,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.dicoding.tanicare.databinding.FragmentHomeBinding
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.dicoding.tanicare.databinding.FragmentHomeBinding
 import com.dicoding.tanicare.helper.ApiClient
 import com.dicoding.tanicare.helper.ApiService
 import com.dicoding.tanicare.helper.SharedPreferencesManager
@@ -29,30 +28,30 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var sharedPreferencesManager: SharedPreferencesManager
     private lateinit var apiService: ApiService
-
-    // Adapter untuk AutoCompleteTextView
-    private lateinit var adapter: ArrayAdapter<String>
+    private lateinit var adapter: ArrayAdapter<String> // Adapter untuk AutoCompleteTextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        sharedPreferencesManager = SharedPreferencesManager(requireContext())
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        // Inisialisasi ApiService dengan menggunakan ApiClient
-        val retrofit = ApiClient.getClient() // Memanggil ApiClient untuk mendapatkan Retrofit instance
-        apiService = retrofit.create(ApiService::class.java) // Mendapatkan ApiService instance
-
+        sharedPreferencesManager = SharedPreferencesManager(requireContext())
+        apiService = ApiClient.getClient().create(ApiService::class.java) // Inisialisasi API Service
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupSearchView() // Atur AutoCompleteTextView
 
-        setupSearchView()
+        // Setup navigasi
+        setupNavigation()
 
-        // Navigasi dan interaksi UI lainnya
+        // Update info pengguna
+        updateUserInfo()
+    }
+
+    private fun setupNavigation() {
         binding.cardDiseasePrediction.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_inputClassificationFragment)
         }
@@ -87,60 +86,42 @@ class HomeFragment : Fragment() {
             binding.searchView.visibility = View.VISIBLE
             binding.searchView.requestFocus()
         }
-
-        // Memperbarui teks lokasi dari SharedPreferences
-        updateLocationText()
     }
 
     private fun setupSearchView() {
-        // Inisialisasi adapter kosong
         adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, mutableListOf())
-
         val autoCompleteTextView = binding.searchView as AutoCompleteTextView
         autoCompleteTextView.setAdapter(adapter)
 
-        // Menangani saran nama kota ketika diketik
+        // Listener untuk menangani input teks
         autoCompleteTextView.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                // Tidak perlu apa-apa di sini
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // Tidak perlu apa-apa di sini
-            }
-
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val query = s.toString()
                 if (query.length >= 1) {
-                    // Panggil API untuk mendapatkan suggestion berdasarkan query
-                    getRegionSuggestions(query)
+                    getRegionSuggestions(query) // Panggil API untuk mendapatkan saran
                 } else {
-                    // Clear hasil ketika input kosong
                     adapter.clear()
                     adapter.notifyDataSetChanged()
                 }
             }
         })
 
-        // Ketika pengguna memilih lokasi dari saran
+        // Listener untuk menangani item yang dipilih
         autoCompleteTextView.setOnItemClickListener { parent, _, position, _ ->
             val selectedCity = parent.getItemAtPosition(position).toString()
-            // Simulasi: Simpan kode zona sesuai dengan kota yang dipilih
-            getZoneCode(selectedCity) // Gantilah dengan logika yang sesuai
-            Toast.makeText(requireContext(), "Zona disimpan: $selectedCity", Toast.LENGTH_SHORT).show()
+            getZoneCodeAndUpdateLocation(selectedCity) // Ambil zone code dan update lokasi
             autoCompleteTextView.visibility = View.GONE
         }
     }
 
-    // Fungsi untuk mendapatkan suggestion nama kota dari API
     private fun getRegionSuggestions(query: String) {
         apiService.getRegionName(query).enqueue(object : Callback<Map<String, Any>> {
             override fun onResponse(call: Call<Map<String, Any>>, response: Response<Map<String, Any>>) {
                 if (response.isSuccessful) {
                     val data = response.body()?.get("data") as? List<Map<String, Any>>
                     val cityNames = data?.map { it["name"] as? String ?: "" } ?: emptyList()
-
-                    // Update adapter dengan data yang diterima
                     adapter.clear()
                     adapter.addAll(cityNames)
                     adapter.notifyDataSetChanged()
@@ -155,54 +136,90 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun getZoneCode(query: String) {
-        sharedPreferencesManager = SharedPreferencesManager(requireContext())
-        val apiService = ApiClient.getClient().create(ApiService::class.java)
-
-        // Panggil getRegionCode dengan parameter query
-        apiService.getRegionCode(query).enqueue(object : Callback<Map<String, Any>> {
+    private fun getZoneCodeAndUpdateLocation(selectedCity: String) {
+        apiService.getRegionCode(selectedCity).enqueue(object : Callback<Map<String, Any>> {
             override fun onResponse(call: Call<Map<String, Any>>, response: Response<Map<String, Any>>) {
                 if (response.isSuccessful) {
-                    val zoneResponse = response.body()
-                    if (zoneResponse != null) {
-                        // Ambil data dari response yang sesuai dengan format yang diterima
-                        val dataList = zoneResponse["data"] as? List<Map<String, Any>>
-                        if (dataList != null && dataList.isNotEmpty()) {
-                            // Ambil kode_wilayah dari data pertama dalam list
-                            val zoneCode = dataList[0]["kode_wilayah"] as? String
-                            if (zoneCode != null) {
-                                // Simpan kode_wilayah ke sharedPreferences
-                                sharedPreferencesManager.saveZoneCode(zoneCode)
-                            } else {
-                                Toast.makeText(requireContext(), "Kode wilayah tidak ditemukan", Toast.LENGTH_SHORT).show()
-                            }
-                        } else {
-                            Toast.makeText(requireContext(), "Data tidak ditemukan atau kosong", Toast.LENGTH_SHORT).show()
-                        }
+                    val data = response.body()?.get("data") as? List<Map<String, Any>>
+                    val zoneCode = data?.firstOrNull()?.get("kode_wilayah") as? String
+                    if (zoneCode != null) {
+                        sharedPreferencesManager.saveZoneCode(zoneCode)
+                        updateLocation(zoneCode) // Kirim zone code ke API setelah diperoleh
                     } else {
-                        Toast.makeText(requireContext(), "Fetch failed: Response body is null", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Kode wilayah tidak ditemukan", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    Toast.makeText(requireContext(), "Fetch failed: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Gagal mendapatkan kode wilayah: ${response.message()}", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<Map<String, Any>>, t: Throwable) {
-                Toast.makeText(requireContext(), "Fetch failed: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
-    private fun updateLocationText() {
-        // Mengambil kode zona yang disimpan di SharedPreferences
-        val savedZoneCode = sharedPreferencesManager.getZoneCode()
-
-        // Mencocokkan kode zona yang disimpan dengan zona yang sesuai (dapat diganti dengan API juga)
-        if (savedZoneCode.isNotEmpty()) {
-            binding.locationText.text = savedZoneCode  // Gantilah dengan nama kota sesuai kode zona
-        } else {
-            binding.locationText.text = "Lokasi tidak tersedia"
+    private fun updateLocation(zoneCode: String) {
+        val token = sharedPreferencesManager.getAuthToken() ?: run {
+            Toast.makeText(requireContext(), "Authorization token is missing", Toast.LENGTH_SHORT).show()
+            return
         }
+
+        val requestBody = mapOf("kode_wilayah" to zoneCode)
+        apiService.editProfileLocation("Bearer $token", requestBody).enqueue(object : Callback<Map<String, Any>> {
+            override fun onResponse(call: Call<Map<String, Any>>, response: Response<Map<String, Any>>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(requireContext(), "Location updated successfully", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "Failed to update location: ${response.message()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Map<String, Any>>, t: Throwable) {
+                Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun updateUserInfo() {
+        val userId = sharedPreferencesManager.getUserId() ?: run {
+            Toast.makeText(requireContext(), "User ID is missing", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        apiService.getUserInfo(userId).enqueue(object : Callback<Map<String, Any>> {
+            override fun onResponse(call: Call<Map<String, Any>>, response: Response<Map<String, Any>>) {
+                if (response.isSuccessful) {
+                    val data = response.body()?.get("data") as? Map<String, Any>
+                    if (data != null) {
+                        val about = data["about"] as? String ?: ""
+                        val zoneCode = data["location"] as? String ?: ""
+                        val name = data["name"] as? String ?: "Unknown"
+                        val zoneName = data["region_name"] as? String ?: ""
+                        val image = data["profile_photo"] as? String ?: ""
+
+                        sharedPreferencesManager.saveZoneCode(zoneCode)
+                        sharedPreferencesManager.saveUserInfo(zoneName, name, about, image)
+                        binding.welcomeText.text = "Welcome $name"
+                        binding.locationText.text = zoneName
+                        val imageUrl = sharedPreferencesManager.getImageUrl()
+                        Glide.with(requireContext())
+                            .load(imageUrl)
+                            .placeholder(R.drawable.ic_profile_placeholder) // Gambar placeholder
+                            .error(R.drawable.ic_profile_placeholder) // Gambar jika gagal memuat
+                            .into(binding.profileImage)
+                    } else {
+                        Toast.makeText(requireContext(), "Failed to parse user data", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "Failed to fetch user info: ${response.message()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Map<String, Any>>, t: Throwable) {
+                Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun onDestroyView() {
@@ -210,4 +227,3 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 }
-
