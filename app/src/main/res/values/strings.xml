@@ -27,4 +27,22 @@
     <string name="location_text">Rungkut, Surabaya</string>
     <string name="save_thread">Save Thread</string>
     <string name="comment_text">Type Your Comment Here</string>
+    <string name="predict_weather">Predict Weather</string>
+    <string name="feature">Feature</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="search_location">Search Location</string>
+    <string name="welcome_profile">Welcome Karsiman</string>
+    <string name="prediksi_cuaca">Prediksi Cuaca</string>
+    <string name="thread">Thread</string>
+    <string name="see_all">See All</string>
+    <string name="clock">08:30 am</string>
+    <string name="text_thread">Hasil Disini Memuaskan Sekali Panennya...</string>
+    <string name="post_image">Post Image</string>
+    <string name="like">Like</string>
+    <string name="comment">Comment</string>
+    <string name="share">Share</string>
+    <string name="number">10</string>
+    <string name="save">Save</string>
+    <string name="tambah_gambar">Tambah Gambar</string>
+    <string name="cek_penyakit">Cek Penyakit</string>
 </resources>

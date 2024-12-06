@@ -33,7 +33,7 @@
                 android:id="@+id/welcome_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome Karsiman"
+                android:text="@string/welcome_profile"
                 style="@style/bold"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp" />
@@ -54,14 +54,15 @@
                     android:src="@drawable/ic_location"
                     app:tint="@color/accent"
                     android:contentDescription="Location Icon"
-                    android:layout_marginEnd="4dp" />
+                    android:layout_marginEnd="4dp"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/location_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Rungkut, Surabaya"
+                    android:text="Rungkut,Surabaya"
                     android:textColor="?android:attr/textColorSecondary"
                     android:textSize="14sp" />
 
@@ -72,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:hint="Search Location"
+                android:hint="@string/search_location"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp" />
         </LinearLayout>
@@ -82,9 +83,9 @@
             android:id="@+id/profile_image"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:src="@drawable/ic_profile_placeholder"
-            android:contentDescription="Profile Picture"
+            android:contentDescription="@string/profile_picture"
             android:scaleType="centerCrop" />
     </LinearLayout>
 
@@ -101,7 +102,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Feature"
+            android:text="@string/feature"
             android:textSize="16sp"
             style="@style/bold"
             />
@@ -135,13 +136,14 @@
                         android:layout_height="40dp"
                         android:contentDescription="Predict Disease"
                         android:src="@drawable/ic_disease_prediction"
-                        app:tint="?attr/colorOnPrimary" />
+                        app:tint="?attr/colorOnPrimary"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Prediksi Penyakit"
+                        android:text="@string/prediksi_penyakit"
                         android:textColor="@color/onPrimary"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -170,7 +172,7 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:contentDescription="Predict Weather"
+                        android:contentDescription="@string/predict_weather"
                         android:src="@drawable/ic_weather_prediction"
                         app:tint="@color/onPrimary" />
 
@@ -178,7 +180,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Prediksi Cuaca"
+                        android:text="@string/prediksi_cuaca"
                         android:textColor="@color/onPrimary"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -191,7 +193,7 @@
         android:id="@+id/thread_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thread"
+        android:text="@string/thread"
         android:textSize="16sp"
         android:textColor="?android:attr/textColorPrimary"
         style="@style/bold"
@@ -203,7 +205,7 @@
         android:id="@+id/thread_see_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="See All"
+        android:text="@string/see_all"
         android:layout_margin="8dp"
         android:textSize="12sp"
         android:textColor="?android:attr/textColorPrimary"
@@ -249,7 +251,7 @@
                         android:layout_height="40dp"
                         android:layout_marginEnd="8dp"
                         android:scaleType="centerCrop"
-                        android:contentDescription="Profile Picture"
+                        android:contentDescription="@string/profile_picture"
                         android:src="@drawable/ic_profile_placeholder" />
 
                     <LinearLayout
@@ -261,7 +263,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Karsiman"
+                            android:text="@string/Name"
                             style="@style/bold"
                             android:textSize="14sp"
                             android:textColor="?android:attr/textColorPrimary"
@@ -270,7 +272,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="08:30 am"
+                            android:text="@string/clock"
                             android:textColor="?android:attr/textColorSecondary"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -281,7 +283,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp"
-                    android:text="Hasil Disini Memuaskan Sekali Panennya..."
+                    android:text="@string/text_thread"
                     android:textColor="?android:attr/textColorPrimary"
                     android:textSize="14sp" />
 
@@ -292,7 +294,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_marginVertical="8dp"
-                    android:contentDescription="Post Image"
+                    android:contentDescription="@string/post_image"
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_farm" />
 
@@ -306,6 +308,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:focusable="true"
                         android:orientation="horizontal"
                         android:gravity="center"
                         android:padding="8dp"
@@ -315,7 +318,7 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_like_off"
-                            android:contentDescription="Like"
+                            android:contentDescription="@string/like"
                             app:tint="?android:attr/textColorPrimary" />
 
                         <TextView
@@ -340,7 +343,7 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_comment"
-                            android:contentDescription="Comment"
+                            android:contentDescription="@string/comment"
                             app:tint="?android:attr/textColorPrimary" />
 
                         <TextView
@@ -365,14 +368,14 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_share"
-                            android:contentDescription="Share"
+                            android:contentDescription="@string/share"
                             app:tint="?android:attr/textColorPrimary" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
-                            android:text="10"
+                            android:text="@string/number"
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -390,7 +393,7 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_save"
-                            android:contentDescription="Save"
+                            android:contentDescription="@string/save"
                             app:tint="?android:attr/textColorPrimary" />
 
                         <TextView
