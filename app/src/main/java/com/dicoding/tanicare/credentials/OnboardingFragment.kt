@@ -1,7 +1,7 @@
-// OnboardingFragment.kt
 package com.dicoding.tanicare.credentials
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +19,7 @@ class OnboardingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Meng-inflate layout dan menghubungkan dengan ViewBinding
         _binding = FragmentOnboardingBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -26,13 +27,23 @@ class OnboardingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         binding.btnNext.setOnClickListener {
-            findNavController().navigate(R.id.action_onboarding_to_loginFragment)
+            try {
+                // Pastikan NavController ditemukan
+                findNavController().navigate(R.id.action_onboardingFragment_to_loginFragment)
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
+                // Menambahkan log untuk debugging
+                Log.e("NavController", "NavController tidak ditemukan: ${e.message}")
+            }
         }
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
+        // Pastikan untuk membebaskan binding saat view dihancurkan
         _binding = null
     }
 }

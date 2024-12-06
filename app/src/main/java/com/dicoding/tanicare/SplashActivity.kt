@@ -27,13 +27,13 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             // Ganti fragment setelah animasi selesai
             replaceToOnboardingFragment()
-        }, 2000) // 2000 milidetik = 2 detik
+        }, 1000)
     }
 
     private fun replaceToOnboardingFragment() {
-        // Mendapatkan fragment transaction dan mengganti fragment
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.main_container, OnboardingFragment()) // Pastikan R.id.fragment_container ada di layout activity_splash
-        fragmentTransaction.commit()
+        fragmentTransaction.replace(R.id.main_container, OnboardingFragment()) // Pastikan ID benar
+        fragmentTransaction.commitAllowingStateLoss() // Menghindari masalah state loss
     }
+
 }
