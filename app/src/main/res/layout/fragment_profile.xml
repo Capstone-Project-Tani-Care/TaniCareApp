@@ -144,6 +144,7 @@
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_gravity="bottom"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
         android:background="@drawable/half_squircle"
         app:itemIconTint="@color/onPrimary"
         app:itemTextColor="@color/onPrimary"

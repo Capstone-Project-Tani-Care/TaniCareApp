@@ -60,6 +60,7 @@
         app:itemIconTint="@color/onPrimary"
         app:itemTextColor="@color/onPrimary"
         app:menu="@menu/bottom_nav_menu"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

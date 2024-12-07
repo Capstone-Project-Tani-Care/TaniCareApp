@@ -10,6 +10,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Header Bar -->
+        <LinearLayout
+            android:id="@+id/header_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_back"
+                android:contentDescription="@string/back"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/comment"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
         <!-- CardView for Post -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -19,6 +47,7 @@
             android:backgroundTint="@color/white"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
+            app:layout_constraintTop_toBottomOf="@id/header_bar"
             tools:ignore="MissingConstraints">
 
             <LinearLayout
@@ -82,13 +111,6 @@
                     android:contentDescription="Post Image"
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_farm" />
-
-                <!-- Action Buttons (Like, Comment, Share, Save) -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -110,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/rounded_edittext"
                 android:drawableStart="@drawable/ic_comment"
                 android:drawablePadding="8dp"

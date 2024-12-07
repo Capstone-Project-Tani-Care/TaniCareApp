@@ -161,6 +161,7 @@
         android:id="@+id/bottom_nav"
         android:layout_width="0dp"
         android:layout_height="70dp"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
         android:background="@drawable/half_squircle"
         app:itemIconTint="@color/onPrimary"
         app:itemTextColor="@color/onPrimary"
