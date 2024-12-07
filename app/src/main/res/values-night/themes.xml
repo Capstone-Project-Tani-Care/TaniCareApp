@@ -8,18 +8,21 @@
 
         <!-- Warna Latar -->
         <item name="android:colorBackground">@color/backgroundDark</item>
-        <item name="colorOnPrimary">@color/darkGray</item>
-        <item name="colorOnSecondary">@color/onSurfaceDark</item>
+        <item name="colorSurface">@color/surfaceDark</item>
+        <item name="colorSurfaceVariant">@color/surfaceVariantDark</item>
 
         <!-- Warna Teks -->
         <item name="android:textColorPrimary">@color/onBackgroundDark</item>
         <item name="android:textColorSecondary">@color/onSurfaceDark</item>
-
-        <item name="android:fontFamily">@font/poppins</item>
+        <item name="colorOnPrimary">@color/onPrimaryDark</item>
+        <item name="colorOnSecondary">@color/onSurfaceDark</item>
+        <item name="colorOnSurface">@color/onSurfaceDark</item>
 
         <!-- Elevation Overlays -->
-        <item name="colorSurfaceVariant">@color/surfaceVariantDark</item>
         <item name="colorOutline">@color/outlineDark</item>
+
+        <!-- Font -->
+        <item name="android:fontFamily">@font/poppins</item>
     </style>
 
     <style name="Theme.TaniCare.Dark" parent="Base.Theme.TaniCare.Dark" />
