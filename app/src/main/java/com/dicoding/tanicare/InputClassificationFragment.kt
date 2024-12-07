@@ -26,16 +26,16 @@ class InputClassificationFragment : Fragment(R.layout.fragment_input_classificat
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentInputClassificationBinding.bind(view)
+
+        // Menangani tombol back jika berada di fragment ini
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (findNavController().currentDestination?.id == R.id.inputClassificationFragment) {
                     findNavController().navigateUp()
-                }
             }
         })
 
-        // Aksi untuk memilih gambar
-        binding.iconPlus.setOnClickListener {
+        // Aksi ketika icon plus ditekan untuk memilih gambar
+        binding.imageInsert.setOnClickListener {
             openGallery()
         }
 
@@ -51,7 +51,7 @@ class InputClassificationFragment : Fragment(R.layout.fragment_input_classificat
 
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK).apply {
-            type = "image/*"
+            type = "image/*" // Menyaring file agar hanya menampilkan gambar
         }
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
@@ -60,10 +60,20 @@ class InputClassificationFragment : Fragment(R.layout.fragment_input_classificat
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
             try {
+                // Mendapatkan URI gambar yang dipilih
                 val imageUri = data?.data
                 val inputStream = requireContext().contentResolver.openInputStream(imageUri!!)
+
+                // Mengubah inputStream menjadi Bitmap
                 selectedImage = BitmapFactory.decodeStream(inputStream)
-                binding.iconPlus.setImageBitmap(selectedImage) // Tampilkan gambar di ImageView
+
+                // Tampilkan gambar yang dipilih di ImageView
+                binding.iconPlus.setImageBitmap(selectedImage)
+
+                // Menampilkan ImageView besar setelah gambar dipilih
+                binding.selectedImageView.setImageBitmap(selectedImage)
+                binding.selectedImageView.visibility = View.VISIBLE // Menampilkan gambar besar
+                binding.iconPlus.visibility = View.GONE // Menyembunyikan ikon tambah gambar
             } catch (e: FileNotFoundException) {
                 e.printStackTrace()
                 Toast.makeText(context, "Gagal memuat gambar.", Toast.LENGTH_SHORT).show()
@@ -72,15 +82,16 @@ class InputClassificationFragment : Fragment(R.layout.fragment_input_classificat
     }
 
     private fun navigateToClassificationFragment() {
-        // Convert bitmap ke byte array agar dapat diteruskan melalui Bundle
+        // Mengkonversi bitmap menjadi byte array agar bisa diteruskan melalui Bundle
         val byteArrayOutputStream = ByteArrayOutputStream()
         selectedImage?.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
         val imageBytes = byteArrayOutputStream.toByteArray()
 
-        // Buat Bundle dan navigasi ke fragment_classification
+        // Membuat Bundle dan navigasi ke classificationFragment
         val bundle = Bundle().apply {
             putByteArray("selected_image", imageBytes)
         }
         findNavController().navigate(R.id.action_inputClassificationFragment_to_classificationFragment, bundle)
     }
 }
+

@@ -13,6 +13,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.dicoding.tanicare.databinding.FragmentHomeBinding
 import com.dicoding.tanicare.helper.ApiClient
@@ -28,7 +29,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var sharedPreferencesManager: SharedPreferencesManager
     private lateinit var apiService: ApiService
-    private lateinit var adapter: ArrayAdapter<String> // Adapter untuk AutoCompleteTextView
+    private lateinit var adapter: ArrayAdapter<String>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +44,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.bottomNav.selectedItemId = R.id.homeFragment
         setupSearchView() // Atur AutoCompleteTextView
 
         // Setup navigasi
@@ -49,6 +52,7 @@ class HomeFragment : Fragment() {
 
         // Update info pengguna
         updateUserInfo()
+
     }
 
     private fun setupNavigation() {
@@ -81,6 +85,7 @@ class HomeFragment : Fragment() {
                 else -> false
             }
         }
+
 
         binding.homeLocation.setOnClickListener {
             binding.searchView.visibility = View.VISIBLE

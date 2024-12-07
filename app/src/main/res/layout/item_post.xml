@@ -128,6 +128,23 @@
                     android:layout_marginStart="4dp"
                     android:text="135" />
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/share_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="8dp"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_share"
+                    android:contentDescription="@string/share"
+                    app:tint="?android:attr/textColorPrimary" />
+            </LinearLayout>
 
             <!-- Tombol Save -->
             <LinearLayout

@@ -32,9 +32,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (findNavController().currentDestination?.id == R.id.WeatherFragment) {
                     findNavController().navigateUp()
-                }
             }
         })
 

@@ -34,7 +34,7 @@ class WeatherViewModel : ViewModel() {
                         tcc >= 50 -> "Moderate"
                         else -> "High"
                     }
-
+                    val weatherImage = firstWeatherData.image ?: ""
                     _weatherLiveData.postValue(
                         WeatherUIModel(
                             city = response.body()?.lokasi?.kecamatan ?: "",
@@ -42,7 +42,9 @@ class WeatherViewModel : ViewModel() {
                             condition = firstWeatherData.weather_desc,
                             humidity = "${firstWeatherData.hu}%",
                             uvIndex = uvIndex,
-                            hourlyForecast = cuacaList // Pass all hourly data
+                            hourlyForecast = cuacaList,
+                            image = weatherImage,
+                            cloudCoverage = tcc
                         )
                     )
                 }
@@ -62,5 +64,7 @@ data class WeatherUIModel(
     val condition: String,
     val humidity: String,
     val uvIndex: String,
-    val hourlyForecast: List<Cuaca>
+    val hourlyForecast: List<Cuaca>,
+    val image: String,
+    val cloudCoverage: Int
 )

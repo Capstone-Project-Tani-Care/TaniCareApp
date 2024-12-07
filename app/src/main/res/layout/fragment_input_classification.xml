@@ -22,6 +22,7 @@
 
     <!-- Box untuk tambah gambar -->
     <RelativeLayout
+        android:id="@+id/image_insert"
         android:layout_width="match_parent"
         android:layout_height="262dp"
         android:layout_marginBottom="32dp"
@@ -30,7 +31,7 @@
         android:outlineProvider="background"
         tools:targetApi="s">
 
-
+        <!-- ImageView yang akan diganti dengan gambar besar -->
         <ImageView
             android:id="@+id/iconPlus"
             android:layout_width="48dp"
@@ -38,7 +39,17 @@
             android:src="@drawable/ic_add"
             app:tint="?android:attr/textColorPrimary"
             android:contentDescription="@string/tambah_gambar" />
+
+        <!-- ImageView besar untuk menampilkan gambar yang dipilih -->
+        <ImageView
+            android:id="@+id/selectedImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:visibility="gone"
+            android:contentDescription="Selected Photo" />
     </RelativeLayout>
+
 
     <!-- Button Cek Penyakit -->
     <Button

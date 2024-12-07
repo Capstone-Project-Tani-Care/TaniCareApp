@@ -1,7 +1,11 @@
 package com.dicoding.tanicare.helper
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +13,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+import com.caverock.androidsvg.SVG
 import com.dicoding.tanicare.R
 import com.dicoding.tanicare.databinding.ItemHourlyForecastBinding
 import com.dicoding.tanicare.databinding.ItemThreeDayForecastBinding
 import com.dicoding.tanicare.helper.weather.Cuaca
+import okhttp3.Callback
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import java.io.IOException
 import java.util.Date
 import java.util.Locale
 
@@ -37,10 +48,8 @@ class HourlyForecastAdapter(private var items: List<Cuaca>) :
         holder.tvHourTemp.text = "${item.t}°"
         holder.tvHourCloudCoverage.text = "${item.tcc}%"
 
-        // Load weather icon
-        Glide.with(holder.itemView.context)
-            .load(item.image)
-            .into(holder.imgHourWeather)
+        val weatherIconResId = getWeatherIcon(item.weather_desc)
+        holder.imgHourWeather.setImageResource(weatherIconResId)
 
         // Format and display the hour
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
@@ -68,6 +77,7 @@ class ThreeDayForecastAdapter(private var items: List<List<Cuaca>>) :
         val tvDay: TextView = itemView.findViewById(R.id.tv_day)
         val tvDayTempRange: TextView = itemView.findViewById(R.id.tv_day_temp_range)
         val imgDayWeather: ImageView = itemView.findViewById(R.id.img_day_weather)
+        val tvTcc: TextView = itemView.findViewById(R.id.tv_tcc)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -79,10 +89,8 @@ class ThreeDayForecastAdapter(private var items: List<List<Cuaca>>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dayForecast = items[position]
 
-        // Extract first Cuaca object for the day's forecast
         val firstItem = dayForecast.firstOrNull() ?: return
 
-        // Determine day name: "Today", "Tomorrow", or weekday
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
         try {
             val date = inputFormat.parse(firstItem.datetime)
@@ -91,15 +99,16 @@ class ThreeDayForecastAdapter(private var items: List<List<Cuaca>>) :
             holder.tvDay.text = "-" // Fallback in case of error
         }
 
-        // Calculate temperature range
         val minTemp = dayForecast.minOfOrNull { it.t } ?: 0
         val maxTemp = dayForecast.maxOfOrNull { it.t } ?: 0
         holder.tvDayTempRange.text = "$minTemp° - $maxTemp°"
 
         // Load weather icon
-        Glide.with(holder.itemView.context)
-            .load(firstItem.image)
-            .into(holder.imgDayWeather)
+        val weatherIconResId = getWeatherIcon(firstItem.weather_desc)
+        holder.imgDayWeather.setImageResource(weatherIconResId)
+
+        val avgTcc = dayForecast.map { it.tcc }.average().toInt() // Rata-rata TCC dalam persen
+        holder.tvTcc.text = "$avgTcc%"
     }
 
     override fun getItemCount(): Int = items.size
@@ -125,5 +134,19 @@ class ThreeDayForecastAdapter(private var items: List<List<Cuaca>>) :
 
             else -> SimpleDateFormat("EEEE", Locale.getDefault()).format(date) // "Monday", "Tuesday", etc.
         }
+    }
+
+}
+
+
+private fun getWeatherIcon(weatherDesc: String): Int {
+    return when (weatherDesc) {
+        "Cerah" -> R.drawable.ic_sunny
+        "Cerah Berawan" -> R.drawable.ic_cloudy //R.drawable.ic_partly_cloudy
+        "Berawan" -> R.drawable.ic_cloudy
+        "Hujan Ringan", "Hujan Lebat" -> R.drawable.ic_rain
+        "Petir", "Hujan Petir" -> R.drawable.ic_rain//R.drawable.ic_thunderstorm
+        "Udara Kabur" -> R.drawable.ic_cloudy
+        else -> R.drawable.ic_sunny // Fallback jika tidak ada kecocokan
     }
 }

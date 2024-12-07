@@ -86,9 +86,9 @@ interface ApiService {
         @Header("Authorization") token: String?,
         @Query("thread_id") thread_id: String
     ): Call<ThreadResponse>
-    /*@GET("threads")
-    fun getThread(
-        @Header("Authorization") authToken: String,  // Bearer Token
-        @Query("thread_id") threadId: String         // ID thread
-    ): Call<ApiResponse>*/
+
+    @GET("threads")
+    fun getAllThread(
+        @Header("Authorization") token: String?,
+    ): Call<ThreadResponse>
 }

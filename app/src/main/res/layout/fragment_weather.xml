@@ -184,6 +184,13 @@
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/item_three_day_forecast"/>
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data bersumber dari BMKG (Badan Meteorologi, Klimatologi, dan Geofisika)"
+            android:layout_margin="8dp"
+            android:textColor="#A3FFFFFF"
+            android:textSize="10dp"/>
 
 
     </LinearLayout>

@@ -37,7 +37,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         sharedPreferencesManager = SharedPreferencesManager(requireContext())
         binding = FragmentProfileBinding.bind(view)
 
-        // Setup RecyclerView
+        binding.bottomNav.selectedItemId = R.id.profileFragment
         binding.threadRecyclerView.layoutManager = LinearLayoutManager(context)
         adapter = ThreadAdapter(emptyList()) // Adapter kosong awal
         binding.threadRecyclerView.adapter = adapter
@@ -45,6 +45,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.profileName.text = sharedPreferencesManager.getUsername()
         binding.location.text = sharedPreferencesManager.getZoneName()
         binding.aboutDescription.text = sharedPreferencesManager.getAbout()
+
 
         val imageUrl = sharedPreferencesManager.getImageUrl()
         Glide.with(requireContext())
@@ -55,10 +56,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         apiService = ApiClient.getClient().create(ApiService::class.java)
 
         getThreadList()
-        //test()
-        //checkThreadResponse("thread-3a2e5ae6-b574-4db9-be56-07d4cb060e3c")
-
-
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -79,20 +76,21 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.editProfile.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
         }
+
+        binding.bottomNav.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.historyFragment -> {
+                    findNavController().navigate(R.id.action_profileFragment_to_historyFragment)
+                    true
+                }
+                R.id.homeFragment -> {
+                    findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
+                    true
+                }
+                else -> false
+            }
+        }
     }
-
-
-   /* private fun loadUserInfo() {
-        binding.profileName.text = sharedPreferencesManager.getUsername()
-        binding.location.text = sharedPreferencesManager.getZoneName()
-        binding.aboutDescription.text = sharedPreferencesManager.getAbout()
-
-        Glide.with(requireContext())
-            .load(sharedPreferencesManager.getImageUrl())
-            .placeholder(R.drawable.ic_profile_placeholder)
-            .error(R.drawable.ic_profile_placeholder)
-            .into(binding.profileImage)
-    }*/
 
 
     private fun getThreadList() {
@@ -106,7 +104,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         apiService.getUserInfo(userId).enqueue(object : Callback<Map<String, Any>> {
             override fun onResponse(call: Call<Map<String, Any>>, response: Response<Map<String, Any>>) {
                 if (response.isSuccessful) {
-                    Log.d("ProfileFragment", "API Response: ${response.body()}")
                     val data = response.body()?.get("data") as? Map<String, Any>
                     if (data != null) {
                         val createdThreads = data["created_threads"] as? List<String>
@@ -152,15 +149,19 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                                 // Bangun objek Thread dari data yang diterima
                                 val thread = Thread(
                                     username = sharedPreferencesManager.getUsername(), // Tambahkan data user jika tersedia
-                                    timestamp = threadData.createdAt,
+                                    timestamp = threadData.createdAt, // Pastikan formatnya bisa diurutkan
                                     content = threadData.body,
                                     imageUrl = threadData.photoUrl, // Bisa null
                                     likeCount = threadData.upVotesBy.size, // Jumlah upVotes
-                                    commentCount = threadData.totalComments // Jumlah komentar
+                                    commentCount = threadData.totalComments, // Jumlah komentar
+                                    profileImage = sharedPreferencesManager.getImageUrl()
                                 )
 
                                 // Tambahkan thread ke list
                                 threadList.add(thread)
+
+                                // Urutkan thread berdasarkan timestamp (paling baru di atas)
+                                threadList.sortByDescending { it.timestamp } // Urutkan berdasarkan createdAt secara menurun
 
                                 // Update adapter dengan data terbaru
                                 adapter.updateData(threadList)
@@ -179,5 +180,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 })
         }
     }
+
 
 }

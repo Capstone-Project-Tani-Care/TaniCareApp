@@ -80,12 +80,12 @@
             tools:targetApi="s" />
 
         <Button
-            android:id="@+id/btn_ketela"
+            android:id="@+id/btn_kedelai"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/button_background"
-            android:text="@string/btn_ketela"
+            android:text="Kedelai"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:clipToOutline="true"

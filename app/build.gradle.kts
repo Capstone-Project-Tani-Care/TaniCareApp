@@ -62,4 +62,5 @@ dependencies {
     implementation (libs.kotlinx.coroutines.android)
     implementation (libs.glide)
     annotationProcessor (libs.compiler)
+    implementation (libs.androidsvg)
 }

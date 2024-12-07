@@ -16,7 +16,8 @@ data class Thread(
     val content: String,
     val imageUrl: String?,
     val likeCount: Int,
-    val commentCount: Int
+    val commentCount: Int,
+    val profileImage: String?
 )
 
 class ThreadAdapter(private var threadList: List<Thread>) : RecyclerView.Adapter<ThreadAdapter.ThreadViewHolder>() {
@@ -48,7 +49,7 @@ class ThreadAdapter(private var threadList: List<Thread>) : RecyclerView.Adapter
 
         // Load image for the profile picture
         Glide.with(holder.itemView.context)
-            .load(thread.imageUrl)
+            .load(thread.profileImage)
             .placeholder(R.drawable.ic_profile_placeholder) // Placeholder image
             .error(R.drawable.ic_profile_placeholder) // Error image
             .into(holder.profileImage)

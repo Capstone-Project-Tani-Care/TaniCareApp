@@ -45,6 +45,13 @@ class SharedPreferencesManager(context: Context) {
         editor.apply()
     }
 
+    fun saveUserEdit(username: String, about: String){
+        val editor = sharedPreferences.edit()
+        editor.putString(USERNAME, username)
+        editor.putString(ABOUT, about)
+        editor.apply()
+    }
+
     fun saveZoneCode(zone: String) {
         val editor = sharedPreferences.edit()
         editor.putString(ZONE_CODE, zone)
