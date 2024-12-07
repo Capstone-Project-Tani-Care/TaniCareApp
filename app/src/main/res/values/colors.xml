@@ -23,7 +23,7 @@
     <color name="error">#B3261E</color>
     <color name="errorContainer">#F9DEDC</color>
     <color name="inverseOnSurface">#F5EFF7</color>
-    <color name="inversePrimary">#D0BCFF</color>
+    <color name="inversePrimary">#388E3C</color>
     <color name="inverseSurface">#322F35</color>
     <color name="onBackground">#1D1B20</color>
     <color name="onError">#FFFFFF</color>
