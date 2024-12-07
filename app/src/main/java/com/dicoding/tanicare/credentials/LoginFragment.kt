@@ -77,14 +77,14 @@ class LoginFragment : Fragment() {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
                     if (loginResponse != null && loginResponse["error"] == false) {
-                        val token = loginResponse["token"] as String
+                        val token = loginResponse["idToken"] as String
                         val userId = loginResponse["userId"] as String
+                        val refreshToken = loginResponse["refreshToken"] as String
 
-                        // Simpan token dan userId ke SharedPreferences
                         sharedPreferencesManager.saveAuthToken(token)
                         sharedPreferencesManager.saveUserId(userId)
+                        sharedPreferencesManager.saveRefreshToken(refreshToken)
 
-                        // Navigasi ke halaman utama
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     } else {
                         Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()

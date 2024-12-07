@@ -18,6 +18,7 @@ class SharedPreferencesManager(context: Context) {
         private const val USERNAME = "username"
         private const val ABOUT = "about"
         private const val IMAGE_URL = "image_url"
+        private const val REFRESH_TOKEN_KEY = "refresh_token_key"
     }
 
     // Fungsi untuk memeriksa apakah dark mode diaktifkan
@@ -32,7 +33,13 @@ class SharedPreferencesManager(context: Context) {
         editor.apply()
     }
 
-    // Fungsi untuk menyimpan token login (auth token)
+
+    fun saveRefreshToken(refreshToken: String){
+        val editor = sharedPreferences.edit()
+        editor.putString(REFRESH_TOKEN_KEY, refreshToken)
+        editor.apply()
+    }
+
     fun saveAuthToken(token: String) {
         val editor = sharedPreferences.edit()
         editor.putString(AUTH_TOKEN_KEY, token)
@@ -78,6 +85,11 @@ class SharedPreferencesManager(context: Context) {
         return sharedPreferences.getString(AUTH_TOKEN_KEY, null)
     }
 
+    fun getRefreshToken(): String? {
+        return sharedPreferences.getString(REFRESH_TOKEN_KEY, null)
+    }
+
+
     fun getUserId(): String? {
         return sharedPreferences.getString(USER_ID, "V0qacwIL1tMFncTfYP1mYbb3wh83")
     }
@@ -116,6 +128,7 @@ class SharedPreferencesManager(context: Context) {
         editor.remove(ABOUT)
         editor.remove(USER_ID)
         editor.remove(AUTH_TOKEN_KEY)
+        editor.remove(REFRESH_TOKEN_KEY)
         editor.apply()
     }
 

@@ -1,14 +1,20 @@
 package com.dicoding.tanicare.helper
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.tanicare.R
 import com.dicoding.tanicare.databinding.ItemPostBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 data class Thread(
     val username: String,
@@ -17,61 +23,85 @@ data class Thread(
     val imageUrl: String?,
     val likeCount: Int,
     val commentCount: Int,
-    val profileImage: String?
+    val profileImage: String?,
+    val idThread: String
 )
 
-class ThreadAdapter(private var threadList: List<Thread>) : RecyclerView.Adapter<ThreadAdapter.ThreadViewHolder>() {
+class ThreadAdapter(
+    private var threadList: List<Thread>,
+    private val sharedPreferencesManager: SharedPreferencesManager,
+    private val listener: ThreadActionListener// Injected via constructor
+) : RecyclerView.Adapter<ThreadAdapter.ThreadViewHolder>() {
 
-    inner class ThreadViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val profileImage: ImageView = itemView.findViewById(R.id.profileImage)
-        val username: TextView = itemView.findViewById(R.id.username)
-        val timestamp: TextView = itemView.findViewById(R.id.timestamp)
-        val threadContent: TextView = itemView.findViewById(R.id.threadContent)
-        val postImage: ImageView = itemView.findViewById(R.id.postImage)
-        val likeCount: TextView = itemView.findViewById(R.id.like_count)
-        val commentCount: TextView = itemView.findViewById(R.id.comment_count)
+    interface ThreadActionListener {
+        fun onLikeClicked(threadId: String)
+        fun onCommentClicked(threadId: String)
+    }
+
+    inner class ThreadViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(thread: Thread) {
+            with(binding) {
+                username.text = thread.username
+                timestamp.text = thread.timestamp
+                threadContent.text = thread.content
+                likeCount.text = thread.likeCount.toString()
+                commentCount.text = thread.commentCount.toString()
+
+                // Load profile image
+                Glide.with(root.context)
+                    .load(thread.profileImage)
+                    .placeholder(R.drawable.ic_profile_placeholder)
+                    .error(R.drawable.ic_profile_placeholder)
+                    .circleCrop()
+                    .into(profileImage)
+
+                // Load post image if available
+                if (thread.imageUrl != null) {
+                    postImage.visibility = View.VISIBLE
+                    Glide.with(root.context)
+                        .load(thread.imageUrl)
+                        .placeholder(R.drawable.bg_farm)
+                        .error(R.drawable.bg_farm)
+                        .into(postImage)
+                } else {
+                    postImage.visibility = View.GONE
+                }
+
+                // Handle like and comment actions
+                likeLayout.setOnClickListener {
+                    listener.onLikeClicked(thread.idThread)
+                }
+
+                commentLayout.setOnClickListener {
+                    listener.onCommentClicked(thread.idThread)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThreadViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)
-        return ThreadViewHolder(view)
+        val binding = ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ThreadViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ThreadViewHolder, position: Int) {
-        val thread = threadList[position]
-
-        // Bind data to the UI components
-        holder.username.text = thread.username
-        holder.timestamp.text = thread.timestamp
-        holder.threadContent.text = thread.content
-        holder.likeCount.text = thread.likeCount.toString()
-        holder.commentCount.text = thread.commentCount.toString()
-
-        // Load image for the profile picture
-        Glide.with(holder.itemView.context)
-            .load(thread.profileImage)
-            .placeholder(R.drawable.ic_profile_placeholder) // Placeholder image
-            .error(R.drawable.ic_profile_placeholder) // Error image
-            .into(holder.profileImage)
-
-        // Check if the post has an image, and if so, display it
-        if (thread.imageUrl != null) {
-            holder.postImage.visibility = View.VISIBLE
-            Glide.with(holder.itemView.context)
-                .load(thread.imageUrl)
-                .placeholder(R.drawable.bg_farm) // Placeholder image for the post
-                .into(holder.postImage)
-        } else {
-            holder.postImage.visibility = View.GONE
-        }
+        holder.bind(threadList[position])
     }
 
     override fun getItemCount(): Int = threadList.size
 
-    // Update data in the adapter
     fun updateData(newThreadList: List<Thread>) {
         threadList = newThreadList
         notifyDataSetChanged()
     }
+
+    private fun onLikeClick(threadId: String) {
+
+    }
+
+    private fun onCommentClick(threadId: String) {
+        // Implement comment functionality
+    }
 }
+
 

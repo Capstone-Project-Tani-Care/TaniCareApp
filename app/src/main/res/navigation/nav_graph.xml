@@ -9,6 +9,15 @@
      <action
          android:id="@+id/action_global_loginFragment"
          app:destination="@id/loginFragment" />
+     <action
+         android:id="@+id/action_global_commentFragment"
+         app:destination="@id/commentFragment"/>
+
+     <fragment
+         android:id="@+id/commentFragment"
+         android:name="com.dicoding.tanicare.CommentFragment"
+         android:label="commentFragment"
+         tools:layout="@layout/fragment_comment"/>
 
     <fragment
         android:id="@+id/onboardingFragment"

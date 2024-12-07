@@ -1,32 +1,34 @@
 package com.dicoding.tanicare
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.dicoding.tanicare.databinding.FragmentCommentBinding
+import com.dicoding.tanicare.databinding.FragmentProfileBinding
+import com.dicoding.tanicare.helper.ApiClient
+import com.dicoding.tanicare.helper.ApiService
+import com.dicoding.tanicare.helper.SharedPreferencesManager
+import com.dicoding.tanicare.helper.Thread
+import com.dicoding.tanicare.helper.ThreadResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CommentFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CommentFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    private lateinit var binding: FragmentCommentBinding
+    private lateinit var sharedPreferencesManager: SharedPreferencesManager
+    private lateinit var apiService: ApiService
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -35,25 +37,75 @@ class CommentFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_comment, container, false)
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CommentFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CommentFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        sharedPreferencesManager = SharedPreferencesManager(requireContext())
+        binding = FragmentCommentBinding.bind(view)
+        apiService = ApiClient.getClient().create(ApiService::class.java)
+        val threadId = arguments?.getString("threadId")
+        if (threadId != null){
+            fetchThreads(threadId)
+        }
+        binding.backButton.setOnClickListener{
+            findNavController().navigateUp()
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigateUp()
             }
+        })
     }
+
+    private fun fetchThreads(threadIds: String) {
+        val authToken = sharedPreferencesManager.getAuthToken() // Ambil token otorisasi
+
+        if (authToken.isNullOrEmpty()) {
+            Log.e("AuthToken", "Authorization token is missing")
+            Toast.makeText(requireContext(), "Authorization token is missing", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        apiService.getThreadDetailWithAuth("Bearer $authToken", threadIds)
+            .enqueue(object : Callback<ThreadResponse> {
+                override fun onResponse(call: Call<ThreadResponse>, response: Response<ThreadResponse>) {
+                    if (response.isSuccessful) {
+                        val threadDetail = response.body()?.data?.thread
+                        if (threadDetail != null) {
+                            // Bind data ke UI
+                            binding.tvName.text = threadDetail.username ?: "Unknown User"
+                            binding.tvTimestamp.text = threadDetail.createdAt ?: "Unknown Time"
+                            binding.tvPostDescription.text = threadDetail.body ?: ""
+
+                            // Set image profile jika ada
+                            Glide.with(requireContext())
+                                .load(threadDetail.photoProfileUrl)
+                                .into(binding.ivProfile)
+
+                            // Set post image jika ada
+                            if (!threadDetail.photoUrl.isNullOrEmpty()) {
+                                binding.ivPostImage.visibility = View.VISIBLE
+                                Glide.with(requireContext())
+                                    .load(threadDetail.photoUrl)
+                                    .into(binding.ivPostImage)
+                            } else {
+                                binding.ivPostImage.visibility = View.GONE
+                            }
+                        } else {
+                            Log.e("ThreadError", "Thread detail is null for thread ID.")
+                        }
+                    } else {
+                        Log.e("ThreadError", "Request failed with status: ${response.code()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ThreadResponse>, t: Throwable) {
+                    t.printStackTrace()
+                    Log.e("Request Failure", "Error: ${t.message}")
+                }
+            })
+    }
+
 }

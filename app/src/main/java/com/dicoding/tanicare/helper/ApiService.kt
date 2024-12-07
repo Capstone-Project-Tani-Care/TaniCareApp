@@ -3,6 +3,7 @@ package com.dicoding.tanicare.helper
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
@@ -30,6 +31,11 @@ interface ApiService {
         @Body requestBody: Map<String, String>
     ): Call<Map<String, Any>>
 
+    @POST("refresh-token")
+    fun refreshToken(
+        @Body requestBody: Map<String, String>
+    ): Call<Map<String, Any>>
+
     @Multipart
     @POST("threads")
     fun createThread(
@@ -50,11 +56,17 @@ interface ApiService {
     @GET("comments")
     fun getComments(): Call<List<Map<String, Any>>>
 
-    @POST("up-vote")
-    fun upVote(
+    @POST("/threads/{threadId}/upvote")
+    fun upvoteThread(
         @Header("Authorization") token: String,
-        @Body requestBody: Map<String, String>
-    ): Call<Map<String, Any>>
+        @Path("threadId") threadId: String
+    ): Call<UpvoteResponse>
+
+    @DELETE("up-vote/{threadId}")
+    fun deleteLike(
+        @Header("Authorization") token: String,
+        @Path("threadId") threadId: String
+    ): Call<DeleteResponse>
 
     @GET("up-vote")
     fun getUpVotes(): Call<Map<String, Any>>
@@ -84,11 +96,19 @@ interface ApiService {
     @GET("threads")
     fun getThreadDetailWithAuth(
         @Header("Authorization") token: String?,
-        @Query("thread_id") thread_id: String
+        @Query("thread_id") threadId: String
     ): Call<ThreadResponse>
+
+    @GET("threads")
+    fun getThreadsWithPagination(
+        @Header("Authorization") authHeader: String,
+        @Query("page") page: Int,
+        @Query("limit") limit: Int
+    ): Call<MainThreadResponse>
 
     @GET("threads")
     fun getAllThread(
         @Header("Authorization") token: String?,
     ): Call<ThreadResponse>
+
 }
