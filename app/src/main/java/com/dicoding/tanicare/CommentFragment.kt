@@ -3,6 +3,7 @@ package com.dicoding.tanicare
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -65,6 +66,29 @@ class CommentFragment : Fragment() {
                 findNavController().navigateUp()
             }
         })
+        binding.editComment.setOnTouchListener { v, event ->
+            val drawableEnd = binding.editComment.compoundDrawables[2]  // 2 untuk drawableEnd
+
+            if (drawableEnd != null && event.action == MotionEvent.ACTION_UP) {
+                val drawableEndRight = binding.editComment.right - binding.editComment.paddingRight
+                val drawableEndLeft = drawableEndRight - drawableEnd.intrinsicWidth
+                val drawableEndTop = binding.editComment.paddingTop
+                val drawableEndBottom = binding.editComment.bottom - binding.editComment.paddingBottom
+
+                // Cek apakah sentuhan berada di area drawableEnd
+                if (event.x >= drawableEndLeft && event.x <= drawableEndRight &&
+                    event.y >= drawableEndTop && event.y <= drawableEndBottom) {
+                    // Tangani aksi klik pada drawableEnd
+                    if(threadId != null){
+                        postComment(threadId)
+                    }
+                    return@setOnTouchListener true // Mengindikasikan event sudah ditangani
+                }
+            }
+
+            // Jika sentuhan tidak berada pada drawableEnd, biarkan EditText menangani sentuhan lain
+            return@setOnTouchListener false
+        }
     }
 
     private fun fetchThreads(threadIds: String) {
@@ -163,5 +187,44 @@ class CommentFragment : Fragment() {
         })
     }
 
+    private fun postComment(threadId: String){
+        val content = binding.editComment.text.toString()
+            val authToken = sharedPreferencesManager.getAuthToken()
+            if (authToken == null){
+                return
+            }
+            val requestBody = mapOf(
+                "threadId" to threadId,
+                "content" to content
+            )
+            val call = apiService.postComment("Bearer $authToken", requestBody)
+            call.enqueue(object : Callback<Map<String, Any>> {
+                override fun onResponse(call: Call<Map<String, Any>>, response: Response<Map<String, Any>>) {
+                    if (response.isSuccessful) {
+                        // Response sukses, periksa apakah statusnya success
+                        val responseBody = response.body()
+                        val status = responseBody?.get("status") as? String
+
+                        if (status == "success") {
+                            // Berhasil
+                            println("Komentar berhasil diposting!")
+                            fetchComments(threadId)
+                            binding.editComment.setText("")
+                        } else {
+                            // Gagal
+                            println("Gagal memposting komentar, status: $status")
+                        }
+                    } else {
+                        // Gagal jika status code bukan 2xx
+                        println("Gagal memposting komentar, error code: ${response.code()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<Map<String, Any>>, t: Throwable) {
+                    // Tangani kegagalan jika terjadi error dalam pengiriman request
+                    println("Error: ${t.localizedMessage}")
+                }
+            })
+    }
 
 }

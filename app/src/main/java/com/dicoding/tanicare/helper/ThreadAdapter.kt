@@ -88,6 +88,7 @@ class ThreadAdapter(
     override fun getItemCount(): Int = threadList.size
 
     fun updateData(newThreadList: List<Thread>) {
+        threadList = emptyList()
         threadList = newThreadList
         notifyDataSetChanged()
     }

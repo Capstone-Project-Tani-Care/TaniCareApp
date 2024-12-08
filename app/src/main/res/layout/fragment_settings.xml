@@ -63,18 +63,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="?android:attr/colorBackground"
-            android:elevation="2dp"
-            android:padding="8dp"
-            android:layout_marginBottom="16dp"
-            >
+            android:clickable="true"
+            android:focusable="true">
 
+            <!-- Horizontal Layout for Icon and Text -->
             <LinearLayout
+                android:id="@+id/main_change_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:padding="12dp"
+                android:padding="16dp"
                 app:tint="?android:attr/colorBackground"
                 android:clickable="true"
                 android:focusable="true">
@@ -94,17 +93,65 @@
                     android:textSize="14sp"/>
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#E0E0E0" />
-
+            <!-- LinearLayout for EditText and Send Button -->
             <LinearLayout
+                android:id="@+id/change_email_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="1"
+                android:visibility="gone">
+
+                <!-- EditText for E-Mail Input -->
+                <EditText
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:hint="Enter new email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="14sp"
+                    android:padding="12dp"/>
+
+                <!-- ImageView Send Button -->
+                <ImageView
+                    android:id="@+id/sendButtonEmail"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_send"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:clickable="true"
+                    android:focusable="true"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Divider Line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+        <!-- Change Password Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <!-- Horizontal Layout for Icon and Text -->
+            <LinearLayout
+                android:id="@+id/main_change_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:padding="12dp"
+                android:padding="16dp"
+                app:tint="?android:attr/colorBackground"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -120,9 +167,45 @@
                     android:text="Change Password"
                     android:textColor="?android:attr/textColorPrimary"
                     android:layout_marginStart="12dp"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <!-- LinearLayout for EditText and Send Button (Password) -->
+            <LinearLayout
+                android:id="@+id/change_password_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:weightSum="1"
+                android:visibility="gone">
+
+                <!-- EditText for Password Input -->
+                <EditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:hint="Enter new password"
+                    android:inputType="textPassword"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="14sp"
+                    android:padding="12dp"/>
+
+                <!-- ImageView Send Button -->
+                <ImageView
+                    android:id="@+id/sendButtonPassword"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_send"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:clickable="true"
+                    android:focusable="true"/>
             </LinearLayout>
         </LinearLayout>
+
+
 
         <!-- Settings Section -->
         <TextView

@@ -33,6 +33,18 @@ interface ApiService {
         @Body requestBody: Map<String, String>
     ): Call<Map<String, Any>>
 
+    @PUT("account/update-email")
+    fun updateEmail(
+        @Header("Authorization") token: String,  // Bearer token
+        @Body body: Map<String, String>           // Body request
+    ): Call<Map<String, Any>>
+
+    @PUT("account/update-password")
+    fun updatePassword(
+        @Header("Authorization") token: String,  // Bearer token
+        @Body body: Map<String, String>           // Body request
+    ): Call<Map<String, Any>>
+
     @POST("edit-profile/about")
     fun editProfileAbout(
         @Header("Authorization") token: String,
@@ -52,12 +64,8 @@ interface ApiService {
         @Part photo: MultipartBody.Part
     ): Call<Map<String, Any>>
 
-    @Multipart
-    @POST("threads")
-    fun createThreadWithoutPhoto(
-        @Header("Authorization") token: String,
-        @Part("body") body: RequestBody
-    ): Call<Map<String, Any>>
+
+
 
     @GET("threads")
     fun getThreads(): Call<List<Map<String, Any>>>
