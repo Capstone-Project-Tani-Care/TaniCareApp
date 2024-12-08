@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Rungkut,Surabaya"
-                    android:textColor="?android:attr/textColorSecondary"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="14sp" />
 
             </LinearLayout>

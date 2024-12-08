@@ -69,7 +69,7 @@ class UploadThreadFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        // Pilih gambar dari galeri
+
         binding.addPhoto.setOnClickListener {
             openGallery()
         }
