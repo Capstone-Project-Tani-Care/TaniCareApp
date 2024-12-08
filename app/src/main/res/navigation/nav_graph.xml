@@ -156,7 +156,7 @@
 
      <fragment
          android:id="@+id/threadFragment"
-         android:name="com.dicoding.tanicare.MainThreadFragment"
+         android:name="com.dicoding.tanicare.thread.MainThreadFragment"
          android:label="ThreadFragment"
          tools:layout="@layout/fragment_main_thread">
 

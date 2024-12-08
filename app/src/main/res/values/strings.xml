@@ -45,4 +45,21 @@
     <string name="save">Save</string>
     <string name="tambah_gambar">Tambah Gambar</string>
     <string name="cek_penyakit">Cek Penyakit</string>
+    <string name="text_credential">Use Credentials to access your account</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="log_in">Log In</string>
+    <string name="signup_text">Don\'t have an account? Signup</string>
+    <string name="onboarding_text">Smart Farmer\'s Friend for quality harvests, TaniCare is a modern solution to support every step of your farming.</string>
+    <string name="penyakit_cek">Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Fusce bibendum eleifend\nsemper. Maecenas sit amet lectus\nefficitur, ornare mauris sed, porttitor velit.\nEtiam nec purus justo.</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login_text">Already have an account? Log in here!</string>
+    <string name="create_new_post">Create New Post</string>
+    <string name="now">now</string>
+    <string name="time">now</string>
+    <string name="write_caption">Write a caption for thread...</string>
+    <string name="add_location">Add Location</string>
+    <string name="posting">Posting</string>
 </resources>

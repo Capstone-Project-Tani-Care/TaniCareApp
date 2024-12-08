@@ -80,7 +80,7 @@
                     android:id="@+id/tv_disease_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Penyakit kresek"
+                    android:text="@string/penyakit_kresek"
                     android:textStyle="bold"
                     android:textColor="@color/surfaceContainerLowest"
                     android:textSize="@dimen/fontsize_body_medium" />
@@ -102,7 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="10"
-                    android:text="Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Fusce bibendum eleifend\nsemper. Maecenas sit amet lectus\nefficitur, ornare mauris sed, porttitor velit.\nEtiam nec purus justo."
+                    android:text="@string/penyakit_cek"
                     android:textColor="?android:attr/textColorPrimary"
                     android:textSize="@dimen/fontsize_body_medium" />
             </LinearLayout>

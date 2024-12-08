@@ -21,7 +21,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center_vertical"
-            android:contentDescription="Back Button"
+            android:contentDescription="@string/back"
             android:src="@drawable/ic_back" />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Create New Post"
+            android:text="@string/create_new_post"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -64,7 +64,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginEnd="8dp"
-                    android:contentDescription="Profile Picture"
+                    android:contentDescription="@string/profile_picture"
                     android:src="@drawable/ic_profile_placeholder" />
 
                 <LinearLayout
@@ -76,7 +76,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Karsiman"
+                        android:text="@string/Name"
                         android:textColor="?android:attr/textColorPrimary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -84,7 +84,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="now"
+                        android:text="@string/time"
                         android:textColor="?android:attr/textColorSecondary"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginVertical="8dp"
-                android:contentDescription="Post Image"
+                android:contentDescription="@string/post_image"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_uploadfile" />
 
@@ -105,14 +105,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="Write a caption for this photo..."
+                android:hint="@string/write_caption"
                 android:padding="8dp"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:ignore="TextFields" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Tombol switch untuk Add Location -->
     <LinearLayout
         android:id="@+id/location_layout"
         android:layout_width="match_parent"
@@ -128,7 +128,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Add Location"
+            android:text="@string/add_location"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="14sp" />
 
@@ -136,7 +136,8 @@
             android:id="@+id/switch_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="false" />
+            android:checked="false"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
     </LinearLayout>
 
     <!-- Tombol Post -->
@@ -148,7 +149,7 @@
         android:layout_marginHorizontal="24dp"
         android:backgroundTint="#66A90F"
         android:background="@drawable/button_background_shape"
-        android:text="Posting"
+        android:text="@string/posting"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/location_layout"

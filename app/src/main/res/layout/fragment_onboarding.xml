@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Discover the best events in Surabaya. From concerts to festivals, we've got it all!"
+                android:text="@string/onboarding_text"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp"
                 android:gravity="center"

@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Karsiman"
+                android:text="@string/Name"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -95,7 +95,7 @@
                 android:drawableStart="@drawable/ic_location"
                 android:drawableTint="?attr/colorAccent"
                 android:drawablePadding="4dp"
-                android:text="Rungkut, Surabaya"
+                android:text="@string/location"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="14sp"
                 android:layout_gravity="center" />
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="@color/accent"
-                android:text="Edit Profile"
+                android:text="@string/edit_profile"
                 android:textColor="@color/white"
                 android:layout_gravity="center" />
 
@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="About"
+                android:text="@string/about"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum eleifend semper."
+                android:text="@string/about_text"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="14sp" />
             <androidx.recyclerview.widget.RecyclerView

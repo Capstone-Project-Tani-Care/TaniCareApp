@@ -1,4 +1,4 @@
-package com.dicoding.tanicare
+package com.dicoding.tanicare.thread
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.tanicare.R
 import com.dicoding.tanicare.databinding.FragmentMainThreadBinding
 import com.dicoding.tanicare.helper.ApiClient
 import com.dicoding.tanicare.helper.ApiService
@@ -19,16 +20,10 @@ import com.dicoding.tanicare.helper.MainThreadResponse
 import com.dicoding.tanicare.helper.SharedPreferencesManager
 import com.dicoding.tanicare.helper.Thread
 import com.dicoding.tanicare.helper.ThreadAdapter
-import com.dicoding.tanicare.helper.ThreadResponse
 import com.dicoding.tanicare.helper.UpvoteResponse
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.concurrent.thread
 
 class MainThreadFragment : Fragment(), ThreadAdapter.ThreadActionListener {
     private lateinit var sharedPreferencesManager: SharedPreferencesManager
