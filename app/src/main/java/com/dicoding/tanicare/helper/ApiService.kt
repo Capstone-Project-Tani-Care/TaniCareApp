@@ -3,8 +3,16 @@ package com.dicoding.tanicare.helper
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.Response
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     @POST("signup")
@@ -44,6 +52,13 @@ interface ApiService {
         @Part photo: MultipartBody.Part
     ): Call<Map<String, Any>>
 
+    @Multipart
+    @POST("threads")
+    fun createThreadWithoutPhoto(
+        @Header("Authorization") token: String,
+        @Part("body") body: RequestBody
+    ): Call<Map<String, Any>>
+
     @GET("threads")
     fun getThreads(): Call<List<Map<String, Any>>>
 
@@ -54,7 +69,26 @@ interface ApiService {
     ): Call<Map<String, Any>>
 
     @GET("comments")
-    fun getComments(): Call<List<Map<String, Any>>>
+    fun getComments(
+        @Query("threadId") threadId: String
+    ): Call<CommentsResponse>
+
+    @POST("bookmarks")
+    fun postBookmarks(
+        @Header("Authorization") token: String,
+        @Body requestBody: Map<String, String>
+    ): Call<Map<String, Any>>
+
+    @GET("bookmarks")
+    fun getBookmarks(
+        @Header("Authorization") token: String
+    ): Call<Map<String, Any>>
+
+    @DELETE("bookmarks/{threadId}")
+    fun deleteBookmarks(
+        @Header("Authorization") token: String,
+        @Path("threadId") threadId: String
+    ): Call<Map<String, Any>>
 
     @POST("/threads/{threadId}/upvote")
     fun upvoteThread(
@@ -87,6 +121,7 @@ interface ApiService {
     @GET("profile")
     fun getUserInfo(@Query("userId") userId: String): Call<Map<String, Any>>
 
+
     @GET("profile")
     fun getProfile(@Query("userId") userId: String): Call<ProfileResponse>
 
@@ -110,5 +145,7 @@ interface ApiService {
     fun getAllThread(
         @Header("Authorization") token: String?,
     ): Call<ThreadResponse>
+
+
 
 }

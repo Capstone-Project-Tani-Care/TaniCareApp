@@ -1,23 +1,17 @@
 package com.dicoding.tanicare
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.dicoding.tanicare.databinding.FragmentWeatherBinding
 import com.dicoding.tanicare.helper.HourlyForecastAdapter
 import com.dicoding.tanicare.helper.SharedPreferencesManager
-
 import com.dicoding.tanicare.helper.ThreeDayForecastAdapter
 import com.dicoding.tanicare.helper.weather.WeatherViewModel
-
 
 
 class WeatherFragment : Fragment(R.layout.fragment_weather) {

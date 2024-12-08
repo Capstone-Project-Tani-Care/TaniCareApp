@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Switch
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.dicoding.tanicare.R
 import com.dicoding.tanicare.databinding.FragmentSettingsBinding
 import com.dicoding.tanicare.helper.SharedPreferencesManager
 

@@ -1,29 +1,15 @@
 package com.dicoding.tanicare.helper
 
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
-import com.caverock.androidsvg.SVG
 import com.dicoding.tanicare.R
-import com.dicoding.tanicare.databinding.ItemHourlyForecastBinding
-import com.dicoding.tanicare.databinding.ItemThreeDayForecastBinding
 import com.dicoding.tanicare.helper.weather.Cuaca
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import java.io.IOException
 import java.util.Date
 import java.util.Locale
 

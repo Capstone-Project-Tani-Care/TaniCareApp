@@ -1,20 +1,12 @@
 package com.dicoding.tanicare.helper
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.tanicare.R
 import com.dicoding.tanicare.databinding.ItemPostBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 data class Thread(
     val username: String,
@@ -36,6 +28,7 @@ class ThreadAdapter(
     interface ThreadActionListener {
         fun onLikeClicked(threadId: String)
         fun onCommentClicked(threadId: String)
+        fun onBookmarkClicked(threadId: String)
     }
 
     inner class ThreadViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -75,6 +68,10 @@ class ThreadAdapter(
                 commentLayout.setOnClickListener {
                     listener.onCommentClicked(thread.idThread)
                 }
+
+                bookmarkLayout.setOnClickListener{
+                    listener.onBookmarkClicked(thread.idThread)
+                }
             }
         }
     }
@@ -95,13 +92,6 @@ class ThreadAdapter(
         notifyDataSetChanged()
     }
 
-    private fun onLikeClick(threadId: String) {
-
-    }
-
-    private fun onCommentClick(threadId: String) {
-        // Implement comment functionality
-    }
 }
 
 

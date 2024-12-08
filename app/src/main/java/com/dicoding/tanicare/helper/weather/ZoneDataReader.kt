@@ -1,8 +1,8 @@
 import android.content.Context
-import java.io.BufferedReader
-import java.io.InputStreamReader
 import android.util.Log
 import com.dicoding.tanicare.R
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 // Model untuk data zona
 data class Zone(val code: String, val cityName: String)

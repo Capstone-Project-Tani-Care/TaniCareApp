@@ -2,20 +2,23 @@ package com.dicoding.tanicare
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.tanicare.databinding.FragmentCommentBinding
-import com.dicoding.tanicare.databinding.FragmentProfileBinding
 import com.dicoding.tanicare.helper.ApiClient
 import com.dicoding.tanicare.helper.ApiService
+import com.dicoding.tanicare.helper.CommentsResponse
+import com.dicoding.tanicare.helper.ItemCommentAdapter
 import com.dicoding.tanicare.helper.SharedPreferencesManager
-import com.dicoding.tanicare.helper.Thread
+import com.dicoding.tanicare.helper.ThreadAdapter
 import com.dicoding.tanicare.helper.ThreadResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,6 +29,8 @@ class CommentFragment : Fragment() {
     private lateinit var binding: FragmentCommentBinding
     private lateinit var sharedPreferencesManager: SharedPreferencesManager
     private lateinit var apiService: ApiService
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: ItemCommentAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,9 +40,8 @@ class CommentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_comment, container, false)
-
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,9 +49,13 @@ class CommentFragment : Fragment() {
         sharedPreferencesManager = SharedPreferencesManager(requireContext())
         binding = FragmentCommentBinding.bind(view)
         apiService = ApiClient.getClient().create(ApiService::class.java)
+        adapter = ItemCommentAdapter(emptyList())
         val threadId = arguments?.getString("threadId")
+        binding.rvComment.adapter = adapter
+        binding.rvComment.layoutManager = LinearLayoutManager(context)
         if (threadId != null){
             fetchThreads(threadId)
+            fetchComments(threadId)
         }
         binding.backButton.setOnClickListener{
             findNavController().navigateUp()
@@ -107,5 +115,53 @@ class CommentFragment : Fragment() {
                 }
             })
     }
+
+    private fun fetchComments(threadId: String) {
+        apiService.getComments(threadId).enqueue(object : Callback<CommentsResponse> {
+            override fun onResponse(
+                call: Call<CommentsResponse>,
+                response: Response<CommentsResponse>
+            ) {
+                Log.d("Response", "Response: $response")
+                if (response.isSuccessful) {
+                    val commentsResponse = response.body()
+                    Log.d("Response", "Response Body: ${commentsResponse}") // Menambahkan log untuk mengecek response body
+
+                    // Mengecek apakah commentsResponse atau data nya null
+                    if (commentsResponse == null) {
+                        Log.e("Response", "Received response body is null.")
+                        return
+                    }
+
+                    if (commentsResponse.status == "success") {
+                        val comments = commentsResponse.data.comments
+
+                        // Mengecek apakah komentar kosong atau null
+                        if (comments.isNullOrEmpty()) {
+                            Log.e("Response", "No comments found in the response.")
+                        } else {
+                            // Menambahkan data komentar ke dalam adapter
+                            adapter = ItemCommentAdapter(comments)
+                            binding.rvComment.adapter = adapter
+                            Log.d("Response", "Comments loaded: ${comments.size} items.")
+                        }
+                    } else {
+                        // Menangani jika status tidak "success"
+                        Toast.makeText(requireContext(), "Error: ${commentsResponse.message}", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    // Menangani kesalahan status HTTP
+                    Toast.makeText(requireContext(), "API call failed with code: ${response.code()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<CommentsResponse>, t: Throwable) {
+                // Menangani kegagalan pada API call
+                Toast.makeText(requireContext(), "API call failed: ${t.message}", Toast.LENGTH_SHORT).show()
+                Log.e("API Failure", "Error: ${t.message}")
+            }
+        })
+    }
+
 
 }

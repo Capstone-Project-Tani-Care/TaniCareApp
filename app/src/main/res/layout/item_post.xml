@@ -66,11 +66,11 @@
         <ImageView
             android:id="@+id/postImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:contentDescription="Post Image"
             android:src="@drawable/bg_farm"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             android:visibility="gone" />
 
         <!-- Tombol Like, Comment, Save -->
@@ -151,6 +151,7 @@
 
             <!-- Tombol Save -->
             <LinearLayout
+                android:id="@+id/bookmark_layout"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"

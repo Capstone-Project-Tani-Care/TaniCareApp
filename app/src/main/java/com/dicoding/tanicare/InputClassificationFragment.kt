@@ -93,5 +93,6 @@ class InputClassificationFragment : Fragment(R.layout.fragment_input_classificat
         }
         findNavController().navigate(R.id.action_inputClassificationFragment_to_classificationFragment, bundle)
     }
+
 }
 

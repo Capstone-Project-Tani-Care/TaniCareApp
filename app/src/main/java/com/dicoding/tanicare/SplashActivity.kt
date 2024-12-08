@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.findNavController
-import com.dicoding.tanicare.credentials.LoginFragment
 import com.dicoding.tanicare.helper.SharedPreferencesManager
 
 class SplashActivity : AppCompatActivity() {

@@ -2,17 +2,16 @@ package com.dicoding.tanicare.profile
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.dicoding.tanicare.R
 import com.dicoding.tanicare.databinding.FragmentEditProfileBinding
-import com.dicoding.tanicare.databinding.FragmentWeatherBinding
 import com.dicoding.tanicare.helper.ApiClient
 import com.dicoding.tanicare.helper.ApiService
 import com.dicoding.tanicare.helper.SharedPreferencesManager

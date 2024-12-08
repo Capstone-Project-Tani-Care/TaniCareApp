@@ -27,15 +27,31 @@ data class SignupResponse(
 
 
 
-/*data class ThreadData(
-    val id: String,
-    val body: String,
+data class CommentsResponse(
+    val data: CommentsData,
+    val message: String,
+    val status: String
+)
+
+data class CommentsData(
+    val comments: List<CommentItem>
+)
+
+data class CommentItem(
+    val content: String,
     val createdAt: String,
-    val ownerId: String,
-    val photoUrl: String?,
-    val totalComments: Int,
+    val id: String,
+    val owner: OwnerData,
+    val threadId: String,
     val upVotesBy: List<String>
-)*/
+)
+
+data class OwnerData(
+    val id: String,
+    val name: String,
+    val photoProfileUrl: String?
+)
+
 
 data class ApiResponse(
     val data: ThreadData,

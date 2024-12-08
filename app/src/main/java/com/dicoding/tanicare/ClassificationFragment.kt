@@ -3,7 +3,6 @@ package com.dicoding.tanicare
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.dicoding.tanicare.databinding.FragmentClassificationBinding
 import com.dicoding.tanicare.helper.ApiClient
 import com.dicoding.tanicare.helper.ApiService
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody

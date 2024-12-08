@@ -1,9 +1,7 @@
 package com.dicoding.tanicare.credentials
 
 import android.os.Bundle
-import android.text.InputType
 import android.text.method.PasswordTransformationMethod
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -12,13 +10,12 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dicoding.tanicare.R
-import com.dicoding.tanicare.databinding.FragmentLoginBinding
 import com.dicoding.tanicare.databinding.FragmentSignupBinding
 import com.dicoding.tanicare.helper.ApiClient
 import com.dicoding.tanicare.helper.ApiService
-import com.dicoding.tanicare.helper.SharedPreferencesManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

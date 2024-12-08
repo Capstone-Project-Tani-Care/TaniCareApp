@@ -12,6 +12,15 @@
      <action
          android:id="@+id/action_global_commentFragment"
          app:destination="@id/commentFragment"/>
+     <action
+         android:id="@+id/action_global_uploadThreadFragment"
+         app:destination="@id/uploadThreadFragment"/>
+
+     <fragment
+         android:id="@+id/uploadThreadFragment"
+         android:name="com.dicoding.tanicare.UploadThreadFragment"
+         android:label="uploadFragment"
+         tools:layout="@layout/fragment_upload_thread"/>
 
      <fragment
          android:id="@+id/commentFragment"
