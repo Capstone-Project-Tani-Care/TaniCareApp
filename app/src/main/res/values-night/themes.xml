@@ -1,52 +1,46 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme for Dark Mode -->
-    <style name="Base.Theme.TaniCare.Dark" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.TaniCare" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Warna Utama -->
         <item name="colorPrimary">@color/primaryDarkMode</item>
-        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorPrimaryDark">@color/primaryDarkMode</item>
         <item name="colorAccent">@color/accentDark</item>
 
         <!-- Warna Latar -->
         <item name="android:colorBackground">@color/backgroundDark</item>
-        <item name="colorSurface">@color/surfaceDark</item>
-        <item name="colorSurfaceVariant">@color/surfaceVariantDark</item>
+        <item name="colorOnPrimary">@color/onPrimaryDark</item>
+        <item name="colorOnSecondary">@color/onBackgroundDark</item>
 
         <!-- Warna Teks -->
         <item name="android:textColorPrimary">@color/onBackgroundDark</item>
         <item name="android:textColorSecondary">@color/onSurfaceDark</item>
-        <item name="colorOnPrimary">@color/onPrimaryDark</item>
-        <item name="colorOnSecondary">@color/onSurfaceDark</item>
-        <item name="colorOnSurface">@color/onSurfaceDark</item>
 
-        <!-- Elevation Overlays -->
-        <item name="colorOutline">@color/outlineDark</item>
-
-        <!-- Font -->
+        <!-- Font Family -->
         <item name="android:fontFamily">@font/poppins</item>
     </style>
 
-    <style name="Theme.TaniCare.Dark" parent="Base.Theme.TaniCare.Dark" />
+    <style name="Theme.TaniCare" parent="Base.Theme.TaniCare" />
 
-    <!-- Bold Text Style for Dark Mode -->
-    <style name="bold.dark">
+    <!-- Bold Text Style with white color -->
+    <style name="bold">
         <item name="android:fontFamily">@font/poppins_bold</item>
         <item name="android:textColor">@color/onBackgroundDark</item>
     </style>
 
-    <!-- Semibold Text Style for Dark Mode -->
-    <style name="semibold.dark">
+    <!-- Semibold Text Style with white color -->
+    <style name="semibold">
         <item name="android:fontFamily">@font/poppins_semibold</item>
         <item name="android:textColor">@color/onBackgroundDark</item>
     </style>
 
-    <!-- Medium Text Style for Dark Mode -->
-    <style name="medium.dark">
+    <!-- Medium Text Style with white color -->
+    <style name="medium">
         <item name="android:fontFamily">@font/poppins_medium</item>
         <item name="android:textColor">@color/onBackgroundDark</item>
     </style>
 
-    <!-- Light Text Style for Dark Mode -->
-    <style name="light.dark">
+    <!-- Light Text Style with white color -->
+    <style name="light">
         <item name="android:fontFamily">@font/poppins_light</item>
         <item name="android:textColor">@color/onBackgroundDark</item>
     </style>
