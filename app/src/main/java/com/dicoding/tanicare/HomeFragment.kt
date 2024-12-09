@@ -56,6 +56,7 @@ class HomeFragment : Fragment(), ThreadAdapter.ThreadActionListener {
         doRefreshToken()
         updateUserInfo()
         fetchThreads()
+
     }
     override fun onLikeClicked(threadId: String) {
         ThreadActions.postLike(requireContext(), threadId, sharedPreferencesManager)

@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
@@ -94,9 +95,10 @@
                 <ImageView
                     android:id="@+id/iv_like"
                     android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_like_off"
-                    android:contentDescription="Like Icon" />
+                    android:layout_height="wrap_content"
+                    app:tint="?android:attr/textColorPrimary"
+                    android:contentDescription="Like Icon"
+                    android:src="@drawable/ic_like_off" />
 
                 <TextView
                     android:id="@+id/like_count"
@@ -121,6 +123,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    app:tint="?android:attr/textColorPrimary"
                     android:src="@drawable/ic_comment"
                     android:contentDescription="Comment Icon" />
 
@@ -139,7 +142,8 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:padding="8dp"
-                android:clickable="true">
+                android:clickable="true"
+                tools:ignore="KeyboardInaccessibleWidget">
 
                 <ImageView
                     android:layout_width="24dp"
@@ -165,6 +169,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_save"
+                    app:tint = "?android:attr/textColorPrimary"
                     android:contentDescription="Save Icon" />
 
                 <TextView
