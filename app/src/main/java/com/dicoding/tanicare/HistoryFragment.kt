@@ -49,8 +49,12 @@ class HistoryFragment : Fragment(), ThreadAdapter.ThreadActionListener {
             }
         })
 
+        binding.backButton.setOnClickListener{
+            findNavController().navigateUp()
+        }
         // Ambil daftar bookmark
         getBookmarksList()
+
 
         // Handle navigation item selection
         binding.bottomNav.setOnNavigationItemSelectedListener { item ->

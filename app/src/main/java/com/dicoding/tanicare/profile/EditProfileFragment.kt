@@ -1,5 +1,8 @@
 package com.dicoding.tanicare.profile
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,7 +17,13 @@ import com.dicoding.tanicare.R
 import com.dicoding.tanicare.databinding.FragmentEditProfileBinding
 import com.dicoding.tanicare.helper.ApiClient
 import com.dicoding.tanicare.helper.ApiService
+import com.dicoding.tanicare.helper.FileUtil
 import com.dicoding.tanicare.helper.SharedPreferencesManager
+import com.dicoding.tanicare.helper.getMimeTypeFromFile
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +33,8 @@ class EditProfileFragment : Fragment() {
     private lateinit var binding: FragmentEditProfileBinding
     private lateinit var sharedPreferencesManager: SharedPreferencesManager
     private lateinit var apiService: ApiService
+    private var imageUri: Uri? = null
+    private val pickImageRequestCode = 100
 
     override fun onCreateView(
 
@@ -48,8 +59,8 @@ class EditProfileFragment : Fragment() {
         val imageUrl = sharedPreferencesManager.getImageUrl()
         Glide.with(requireContext())
             .load(imageUrl)
-            .placeholder(R.drawable.ic_profile_placeholder) // Gambar placeholder
-            .error(R.drawable.ic_profile_placeholder) // Gambar jika gagal memuat
+            .placeholder(R.drawable.ic_profile_placeholder)
+            .error(R.drawable.ic_profile_placeholder)
             .into(binding.profileImage)
         binding.usernameInput.setText(sharedPreferencesManager.getUsername())
         binding.aboutInput.setText(sharedPreferencesManager.getAbout())
@@ -76,7 +87,7 @@ class EditProfileFragment : Fragment() {
         binding.backButton.setOnClickListener{
             val username = binding.usernameInput.text.toString()
             val about = binding.aboutInput.text.toString()
-            if (sharedPreferencesManager.getUsername() == username || sharedPreferencesManager.getAbout() == about){
+            if (sharedPreferencesManager.getUsername() != username || sharedPreferencesManager.getAbout() != about){
                 if (username.isEmpty() || about.isEmpty()) {
                     Toast.makeText(context, "Username and About cannot be empty", Toast.LENGTH_SHORT).show()
                 } else {
@@ -86,7 +97,9 @@ class EditProfileFragment : Fragment() {
             } else {
                 findNavController().navigateUp()
             }
-
+        }
+        binding.profileImage.setOnClickListener{
+            openGallery()
         }
     }
 
@@ -136,6 +149,83 @@ class EditProfileFragment : Fragment() {
                 Log.e("ProfileUpdate", "Request failed: ${t.message}")
             }
         })
+    }
+
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, pickImageRequestCode)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == pickImageRequestCode && resultCode == Activity.RESULT_OK) {
+            imageUri = data?.data
+            binding.profileImage.setImageURI(imageUri) // Tampilkan gambar yang dipilih
+            uploadProfilePhoto()
+        }
+    }
+
+    private fun uploadProfilePhoto() {
+
+        val token = "Bearer ${sharedPreferencesManager.getAuthToken()}"
+        if (imageUri != null) {
+            try {
+                // Konversi Uri menjadi File
+                val file = FileUtil.from(requireContext(), imageUri!!)
+                Log.d("FilePath", "File path: ${file.absolutePath}")
+                Log.d("ImageUri", "URI: $imageUri")
+                val mimeType = getMimeTypeFromFile(file)
+                val requestImageFile = file.asRequestBody(mimeType.toMediaTypeOrNull())
+                val imageMultipart =
+                    MultipartBody.Part.createFormData("photo", file.name, requestImageFile)
+                Log.d("MultipartFile", "File name: ${file.name}, Size: ${file.length()}")
+                apiService.postProfileImage(token, imageMultipart)
+                    .enqueue(object : Callback<Map<String, Any>> {
+                        override fun onResponse(
+                            call: Call<Map<String, Any>>,
+                            response: Response<Map<String, Any>>
+                        ) {
+                            if (response.isSuccessful) {
+                                val responseBody = response.body()
+                                if (responseBody?.get("status") == "success") {
+                                    Toast.makeText(
+                                        context,
+                                        "Photo profil berhasil diubah!",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    file.delete()
+                                } else {
+                                    Toast.makeText(
+                                        context,
+                                        "Gagal mengubah photo profile: ${responseBody?.get("message")}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            } else {
+                                Toast.makeText(
+                                    context,
+                                    "Gagal mengubah foto profil.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<Map<String, Any>>, t: Throwable) {
+                            Toast.makeText(
+                                context,
+                                "Terjadi kesalahan: ${t.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            Log.e("ProfilePic", "Error: ${t.message}")
+                        }
+                    })
+            } catch (e: Exception) {
+                Toast.makeText(context, "Gagal memproses gambar: ${e.message}", Toast.LENGTH_SHORT)
+                    .show()
+                Log.e("ProfilePic", "Error: ${e.message}")
+            }
+        }
     }
 
 }

@@ -70,6 +70,7 @@ class HomeFragment : Fragment(), ThreadAdapter.ThreadActionListener {
     }
 
 
+
     private fun setupNavigation() {
         binding.cardDiseasePrediction.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_inputClassificationFragment)

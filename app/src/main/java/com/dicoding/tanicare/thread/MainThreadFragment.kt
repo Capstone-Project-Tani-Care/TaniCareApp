@@ -46,26 +46,25 @@ class MainThreadFragment : Fragment(), ThreadAdapter.ThreadActionListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Inisialisasi
         sharedPreferencesManager = SharedPreferencesManager(requireContext())
         apiService = ApiClient.getClient().create(ApiService::class.java)
         adapter = ThreadAdapter(emptyList(), sharedPreferencesManager, this)
 
-        // Set up RecyclerView dengan adapter dan layout manager
         binding.recyclerViewPosts.adapter = adapter
         binding.recyclerViewPosts.layoutManager = LinearLayoutManager(context)
 
-        // Setup back button behavior
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 findNavController().navigateUp()
             }
         })
 
-        // Panggil fungsi untuk memuat data pertama kali
+        binding.backButton.setOnClickListener{
+            findNavController().navigateUp()
+        }
+
         fetchThreads(currentPage)
 
-        // Tambahkan scroll listener untuk paginasi
         setupScrollListener()
     }
 

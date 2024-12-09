@@ -33,6 +33,13 @@ interface ApiService {
         @Body requestBody: Map<String, String>
     ): Call<Map<String, Any>>
 
+    @Multipart
+    @POST("profile/photo")
+    fun postProfileImage(
+        @Header("Authorization") token: String,
+        @Part image: MultipartBody.Part
+    ): Call<Map<String, Any>>
+
     @PUT("account/update-email")
     fun updateEmail(
         @Header("Authorization") token: String,  // Bearer token
