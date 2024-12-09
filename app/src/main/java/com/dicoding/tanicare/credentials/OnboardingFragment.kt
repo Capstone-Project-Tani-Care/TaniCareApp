@@ -19,7 +19,6 @@ class OnboardingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Meng-inflate layout dan menghubungkan dengan ViewBinding
         _binding = FragmentOnboardingBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,11 +29,9 @@ class OnboardingFragment : Fragment() {
 
         binding.btnNext.setOnClickListener {
             try {
-                // Pastikan NavController ditemukan
                 findNavController().navigate(R.id.action_onboardingFragment_to_loginFragment)
             } catch (e: IllegalStateException) {
                 e.printStackTrace()
-                // Menambahkan log untuk debugging
                 Log.e("NavController", "NavController tidak ditemukan: ${e.message}")
             }
         }

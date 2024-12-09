@@ -26,12 +26,10 @@ class ResultClassificationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Menerima data yang diteruskan dari ClassificationFragment
         val predictedClass = arguments?.getString("predicted_class")
         val treatment = arguments?.getString("treatment")
         val imageBytes = arguments?.getByteArray("selected_image")
 
-        // Menampilkan data pada UI jika ada
         predictedClass?.let {
             binding.tvDiseaseName.text = it
         }
@@ -43,7 +41,6 @@ class ResultClassificationFragment : Fragment() {
             binding.diseaseImage.setImageBitmap(receivedImage)
         }
 
-        // Tombol kembali
         binding.backButton.setOnClickListener {
             findNavController().navigate(R.id.action_global_homeFragment)
         }

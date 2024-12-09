@@ -158,7 +158,7 @@ class HomeFragment : Fragment(), ThreadAdapter.ThreadActionListener {
                     val zoneCode = data?.firstOrNull()?.get("kode_wilayah") as? String
                     if (zoneCode != null) {
                         sharedPreferencesManager.saveZoneCode(zoneCode)
-                        updateLocation(zoneCode) // Kirim zone code ke API setelah diperoleh
+                        updateLocation(zoneCode)
                     } else {
                         Toast.makeText(requireContext(), "Kode wilayah tidak ditemukan", Toast.LENGTH_SHORT).show()
                     }
