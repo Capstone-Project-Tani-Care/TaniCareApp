@@ -83,12 +83,10 @@ class ClassificationFragment : Fragment() {
             receivedImage?.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
             val imageBytes = byteArrayOutputStream.toByteArray()
 
-            // Mengonversi byte array ke MultipartBody.Part
             val requestBody = RequestBody.create("image/*".toMediaTypeOrNull(), imageBytes)
 
             val part = MultipartBody.Part.createFormData("image", "image.jpg", requestBody)
 
-            // Membuat instance ApiService dan melakukan request
             val apiService = ApiClient.getClient().create(ApiService::class.java)
             apiService.predictCrop(cropType, part).enqueue(object : Callback<Map<String, Any>> {
                 override fun onResponse(call: Call<Map<String, Any>>, response: Response<Map<String, Any>>) {
@@ -100,7 +98,6 @@ class ClassificationFragment : Fragment() {
                         val predictedClass = data?.get("predicted_class") as? String
                         val treatment = data?.get("treatment") as? String
 
-                        // Menampilkan hasil prediksi di UI
                         if (plant != null && predictedClass != null && treatment != null) {
                             showPredictionResult(predictedClass, treatment, imageBytes)
                         }
@@ -117,10 +114,7 @@ class ClassificationFragment : Fragment() {
     }
 
     private fun showPredictionResult(predictedClass: String, treatment: String, imageBytes: ByteArray) {
-        // Tampilkan hasil prediksi dan saran pengobatan
         val resultMessage = "Prediksi: $predictedClass\nPerawatan: $treatment"
-        //Toast.makeText(context, resultMessage, Toast.LENGTH_LONG).show()
-
         val bundle = Bundle().apply {
             putString("predicted_class", predictedClass)
             putString("treatment", treatment)

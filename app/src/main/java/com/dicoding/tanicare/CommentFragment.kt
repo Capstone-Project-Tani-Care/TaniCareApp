@@ -75,18 +75,16 @@ class CommentFragment : Fragment() {
                 val drawableEndTop = binding.editComment.paddingTop
                 val drawableEndBottom = binding.editComment.bottom - binding.editComment.paddingBottom
 
-                // Cek apakah sentuhan berada di area drawableEnd
                 if (event.x >= drawableEndLeft && event.x <= drawableEndRight &&
                     event.y >= drawableEndTop && event.y <= drawableEndBottom) {
-                    // Tangani aksi klik pada drawableEnd
+
                     if(threadId != null){
                         postComment(threadId)
                     }
-                    return@setOnTouchListener true // Mengindikasikan event sudah ditangani
+                    return@setOnTouchListener true
                 }
             }
 
-            // Jika sentuhan tidak berada pada drawableEnd, biarkan EditText menangani sentuhan lain
             return@setOnTouchListener false
         }
     }
