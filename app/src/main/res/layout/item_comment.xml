@@ -12,7 +12,7 @@
         android:layout_height="40dp"
         android:src="@drawable/ic_profile_placeholder"
         app:civ_border_width="1dp"
-        app:civ_border_color="@color/gray"
+        app:civ_border_color="?android:attr/colorBackground"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Nama Pengguna"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@id/img_profile"
@@ -35,6 +36,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:textColor="@color/black"
         android:text="Ini adalah komentar pengguna."
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"

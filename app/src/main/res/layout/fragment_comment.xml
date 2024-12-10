@@ -145,6 +145,7 @@
                 android:drawableEnd="@drawable/ic_send"
                 android:drawablePadding="8dp"
                 android:hint="@string/comment_text"
+                android:textColor="@color/black"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:minHeight="48dp"
@@ -153,6 +154,7 @@
             <!-- RecyclerView for Comment List -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_comment"
+                android:backgroundTint="@color/onPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
