@@ -14,7 +14,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_tanicare"
+        android:icon="@mipmap/ic_tanicare_round"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_tanicare_foreground"
         android:supportsRtl="true"
