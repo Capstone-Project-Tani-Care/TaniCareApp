@@ -130,6 +130,7 @@
         android:backgroundTint="@color/onPrimary"
         android:background="@drawable/button_background_shape"
         android:text="@string/posting"
+        android:foreground="?attr/selectableItemBackground"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/cardView"

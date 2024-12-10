@@ -88,6 +88,7 @@ class HomeFragment : Fragment(), ThreadAdapter.ThreadActionListener {
         binding.fab.setOnClickListener{
             findNavController().navigate(R.id.action_global_uploadThreadFragment)
         }
+        @Suppress("DEPRECATION")
         binding.bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.historyFragment -> {

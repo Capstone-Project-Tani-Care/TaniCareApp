@@ -129,33 +129,35 @@
             android:layout_marginTop="8dp"
             android:orientation="vertical"
             android:padding="8dp"
+            android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/cardView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
             <!-- Input Comment -->
+
+            <!-- RecyclerView for Comment List -->
             <EditText
                 android:id="@+id/edit_comment"
-                android:layout_width="match_parent"
+                android:layout_width="380dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="6dp"
                 android:background="@drawable/rounded_edittext"
                 android:drawableStart="@drawable/ic_comment"
                 android:drawableEnd="@drawable/ic_send"
                 android:drawablePadding="8dp"
                 android:hint="@string/comment_text"
-                android:textColor="@color/black"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:minHeight="48dp"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:textColor="@color/black" />
 
-            <!-- RecyclerView for Comment List -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_comment"
                 android:backgroundTint="@color/onPrimary"
-                android:layout_width="match_parent"
+                android:layout_width="380dp"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_comment" />

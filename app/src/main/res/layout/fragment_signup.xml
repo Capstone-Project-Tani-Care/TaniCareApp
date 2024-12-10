@@ -99,6 +99,7 @@
         android:textColor="@android:color/white"
         android:background="@drawable/button_background_shape"
         android:backgroundTint="#66A90F"
+        android:foreground="?attr/selectableItemBackground"
         app:layout_constraintTop_toBottomOf="@id/cPasswordField"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
