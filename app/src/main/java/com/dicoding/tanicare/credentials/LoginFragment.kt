@@ -45,7 +45,7 @@ class LoginFragment : Fragment() {
             }
         })
 
-        // Set click listener untuk tombol signup
+
         binding.signup.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
         }
