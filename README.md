@@ -59,9 +59,8 @@ Key technologies and tools used in Tanicare:
 1. **Kotlin** – Primary language for Android development.  
 2. **Glide** – Image loading and caching.  
 3. **Retrofit** – API interaction for data fetching.  
-4. **CameraX** – For capturing images from the camera or gallery.  
-5. **Preferences** – Storing user settings and preferences.  
-6. **Navigation Component** – To manage the app's UI navigation.  
+4. **Preferences** – Storing user settings and preferences.  
+5. **Navigation Component** – To manage the app's UI navigation.  
 
 ---
 
@@ -78,8 +77,8 @@ Key technologies and tools used in Tanicare:
 
 ## 📋 **Requirements**
 To run the Tanicare app, ensure you have the following:
-1. **Android Studio Chipmunk**  
-2. **Android Device** or **Android Emulator** (minimum Lollipop version)  
+1. **Android Studio Koala**  
+2. **Android Device** or **Android Emulator** (minimum Nougat version)  
 3. **USB Cable** (for testing on a physical device)  
 
 ---
