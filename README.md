@@ -1,5 +1,9 @@
 # **TANICARE MOBILE DEVELOPMENT**
 
+---
+## 🖼️ **Screenshots**
+![Cover](https://raw.githubusercontent.com/Capstone-Project-Tani-Care/.github/main/Copy%20of%20PPT%20CAPSTONE%20PROJECT.jpg)
+
 ## 🌱 **Project Overview**
 Welcome to **Tanicare**, an innovative mobile application developed to help farmers diagnose plant diseases using cutting-edge machine learning technology. This project is our final submission for **Bangkit Academy 2024 Batch 2**, and it’s aimed at boosting agricultural productivity by making plant disease diagnosis faster, easier, and more reliable.
 
@@ -46,11 +50,6 @@ Tanicare helps farmers in the following ways:
 3. **Tomato Disease Prediction**: Identify diseases affecting tomato crops.  
 4. **Corn Disease Prediction**: Detect diseases in corn plants.  
 5. **Soy Disease Prediction**: Diagnose diseases in soy plants.  
-
----
-
-## 🖼️ **Screenshots**
-![Judul Gambar](https://raw.githubusercontent.com/Capstone-Project-Tani-Care/.github/main/Copy%20of%20PPT%20CAPSTONE%20PROJECT.jpg)
 
 ---
 
