@@ -70,7 +70,7 @@ class CommentFragment : Fragment() {
             val drawableEnd = binding.editComment.compoundDrawables[2]  // 2 untuk drawableEnd
 
             if (drawableEnd != null && event.action == MotionEvent.ACTION_UP) {
-                val drawableEndRight = binding.editComment.right - binding.editComment.paddingRight
+                val drawableEndRight = binding.editComment.right - binding.editComment.paddingRight - binding.editComment.paddingRight
                 val drawableEndLeft = drawableEndRight - drawableEnd.intrinsicWidth
                 val drawableEndTop = binding.editComment.paddingTop
                 val drawableEndBottom = binding.editComment.bottom - binding.editComment.paddingBottom

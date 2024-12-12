@@ -51,10 +51,13 @@ class HomeFragment : Fragment(), ThreadAdapter.ThreadActionListener {
         adapterThread = ThreadAdapter(emptyList(), sharedPreferencesManager, this)
         binding.recyclerHome.adapter = adapterThread
         binding.recyclerHome.layoutManager = LinearLayoutManager(context)
+        adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, mutableListOf())
         setupSearchView()
         setupNavigation()
         doRefreshToken()
         updateUserInfo()
+        threadList.clear()
+        adapter.notifyDataSetChanged()
         fetchThreads()
 
     }
@@ -109,7 +112,7 @@ class HomeFragment : Fragment(), ThreadAdapter.ThreadActionListener {
     }
 
     private fun setupSearchView() {
-        adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, mutableListOf())
+
         val autoCompleteTextView = binding.searchView as AutoCompleteTextView
         autoCompleteTextView.setAdapter(adapter)
         autoCompleteTextView.addTextChangedListener(object : TextWatcher {
