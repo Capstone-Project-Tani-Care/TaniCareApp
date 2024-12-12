@@ -33,7 +33,7 @@ class SplashActivity : AppCompatActivity() {
                 navController.navigate(R.id.action_global_homeFragment)
             } else {
                 // Navigate to LoginFragment
-                navController.navigate(R.id.action_global_loginFragment)
+                navController.navigate(R.id.action_global_onboardingFragment)
             }
 
             // Hide logo splash screen
