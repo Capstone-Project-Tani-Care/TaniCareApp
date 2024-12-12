@@ -1,7 +1,7 @@
 # **TANICARE MOBILE DEVELOPMENT**
 
 ## 🌱 **Project Overview**
-Welcome to **Tanicare**, an innovative mobile application developed to help farmers diagnose plant diseases using cutting-edge machine learning technology. This project is our final submission for **Bangkit Academy 2024**, and it’s aimed at boosting agricultural productivity by making plant disease diagnosis faster, easier, and more reliable.
+Welcome to **Tanicare**, an innovative mobile application developed to help farmers diagnose plant diseases using cutting-edge machine learning technology. This project is our final submission for **Bangkit Academy 2024 Batch 2**, and it’s aimed at boosting agricultural productivity by making plant disease diagnosis faster, easier, and more reliable.
 
 ---
 
@@ -9,13 +9,13 @@ Welcome to **Tanicare**, an innovative mobile application developed to help farm
 **Team ID**: **C242-PS022**
 
 ### Meet the brilliant minds behind **Tanicare**:
-- **(ML)** M296B4KY3909 – Rizki Baehtiar Afandi – *Universitas Pembangunan Nasional Veteran Jawa Timur* [Active]  
-- **(ML)** M296B4KY0474 – Anak Agung Ngurah Wisnu Wardana – *Universitas Pembangunan Nasional Veteran Jawa Timur* [Active]  
-- **(ML)** M296B4KY0876 – Bryan Anantha Manggala Pranaja Hartono – *Universitas Pembangunan Nasional Veteran Jawa Timur* [Active]  
-- **(CC)** C296B4KY2692 – Muhammad Afrian Nur Setiawansyah – *Universitas Pembangunan Nasional Veteran Jawa Timur* [Active]  
-- **(CC)** C296B4KY2873 – Muhammad Hakan Syakur – *Universitas Pembangunan Nasional Veteran Jawa Timur* [Active]  
-- **(MD)** A296B4KY1279 – Erlangga Putra Ramadhan – *Universitas Pembangunan Nasional Veteran Jawa Timur* [Active]  
-- **(MD)** A296B4KY4355 – Titis Fajar Nurdiansyah – *Universitas Pembangunan Nasional Veteran Jawa Timur* [Active]  
+- **(ML)** M296B4KY3909 – Rizki Baehtiar Afandi – *Universitas Pembangunan Nasional Veteran Jawa Timur* 
+- **(ML)** M296B4KY0474 – Anak Agung Ngurah Wisnu Wardana – *Universitas Pembangunan Nasional Veteran Jawa Timur* 
+- **(ML)** M296B4KY0876 – Bryan Anantha Manggala Pranaja Hartono – *Universitas Pembangunan Nasional Veteran Jawa Timur*   
+- **(CC)** C296B4KY2692 – Muhammad Afrian Nur Setiawansyah – *Universitas Pembangunan Nasional Veteran Jawa Timur* 
+- **(CC)** C296B4KY2873 – Muhammad Hakan Syakur – *Universitas Pembangunan Nasional Veteran Jawa Timur*  
+- **(MD)** A296B4KY1279 – Erlangga Putra Ramadhan – *Universitas Pembangunan Nasional Veteran Jawa Timur*  
+- **(MD)** A296B4KY4355 – Titis Fajar Nurdiansyah – *Universitas Pembangunan Nasional Veteran Jawa Timur*  
 
 ### **Roles/Responsibilities**
 - **Project Planning**: Erlangga Putra Ramadhan, Titis Fajar Nurdiansyah, Rizki Baehtiar Afandi, Anak Agung Ngurah Wisnu Wardana, Bryan Anantha Manggala Pranaja Hartono, Muhammad Afrian Nur Setiawansyah, Muhammad Hakan Syakur  
@@ -50,7 +50,7 @@ Tanicare helps farmers in the following ways:
 ---
 
 ## 🖼️ **Screenshots**
-*(Insert your app screenshots here to showcase the features)*  
+![Judul Gambar](https://raw.githubusercontent.com/Capstone-Project-Tani-Care/.github/main/Copy%20of%20PPT%20CAPSTONE%20PROJECT.jpg)
 
 ---
 
