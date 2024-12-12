@@ -88,11 +88,12 @@ Follow these simple steps to get started with Tanicare:
 ###  Clone the Project
 Open your terminal and run:
 ```bash
-git clone https://github.com/your.....
+git clone https://github.com/Capstone-Project-Tani-Care/TaniCareApp.git
 
 
 ###  Run the Project
-- Wait for the Gradle build to finish.
+- Extract the zip
+- Open the folder with Android Studio
 - Press **Run > Run 'app'**.
 - The app will install on your phone/emulator. Ensure the device/emulator is configured.
 
